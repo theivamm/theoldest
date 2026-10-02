@@ -95,7 +95,7 @@ input::placeholder{color:rgba(217,198,168,.55)}
             <p style="margin:0;font:500 10px Inter;letter-spacing:.24em;text-transform:uppercase;color:#8a5a2c">{{ c.lema }}</p>
             <h2 style="margin:6px 0 4px;font:500 30px/1.1 'Playfair Display',serif">{{ c.nombre }}</h2>
             <p style="margin:0;font:400 14px Inter;color:#4b3626">{{ c.direccion }}</p>
-            <p style="margin:10px 0 0;display:flex;align-items:center;gap:8px;font:500 12px Inter;color:#4b3626"><span style="width:8px;height:8px;border-radius:50%;background:{{ c.dot }}"></span>{{ c.openLabel }} · {{ c.total }} platos y tragos</p>
+            <p style="margin:10px 0 0;display:flex;align-items:center;gap:8px;font:500 12px Inter;color:#4b3626"><span style="width:8px;height:8px;border-radius:50%;background:{{ c.dot }}"></span>{{ c.openLabel }}</p>
             <p style="margin:14px 0 0;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase;color:#8a5a2c">Entrar a {{ c.nombre }} →</p>
           </div>
         </button>
@@ -322,7 +322,7 @@ input::placeholder{color:rgba(217,198,168,.55)}
       </article>
     </sc-for>
   </div>
-  <div style="margin-top:36px"><button onClick="{{ bCarta }}" style="cursor:pointer;display:inline-flex;gap:12px;padding:17px 30px;border-radius:999px;border:1px solid #B87333;background:#B87333;color:#1A120D;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#CF8A47">Ver los {{ b.totalItems }} platos y tragos <span>→</span></button></div>
+  <div style="margin-top:36px"><button onClick="{{ bCarta }}" style="cursor:pointer;display:inline-flex;gap:12px;padding:17px 30px;border-radius:999px;border:1px solid #B87333;background:#B87333;color:#1A120D;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#CF8A47">Ver la carta completa <span>→</span></button></div>
 </section>
 
 <section style="max-width:1240px;margin:0 auto;padding:110px 32px 20px;box-sizing:border-box">
@@ -369,8 +369,7 @@ input::placeholder{color:rgba(217,198,168,.55)}
         <div style="border-radius:22px;background:#3b281c url('{{ bMos1 }}') center/cover no-repeat"></div>
         <div style="border-radius:22px;background:#3b281c url('{{ bMos2 }}') center/cover no-repeat"></div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px">
-        <div style="padding:18px;border-radius:16px;background:#2c1d14;border:1px solid rgba(217,198,168,.1)"><p style="margin:0;font:500 32px 'Playfair Display',serif;color:#E3B987">{{ b.totalItems }}</p><p style="margin:4px 0 0;font:400 12px/1.4 Inter;color:rgba(245,235,221,.7)">items en la carta</p></div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px">
         <div style="padding:18px;border-radius:16px;background:#2c1d14;border:1px solid rgba(217,198,168,.1)"><p style="margin:0;font:500 32px 'Playfair Display',serif;color:#E3B987">{{ catCount }}</p><p style="margin:4px 0 0;font:400 12px/1.4 Inter;color:rgba(245,235,221,.7)">secciones</p></div>
         <div style="padding:18px;border-radius:16px;background:#2c1d14;border:1px solid rgba(217,198,168,.1)"><p style="margin:0;font:500 32px 'Playfair Display',serif;color:#E3B987">1984</p><p style="margin:4px 0 0;font:400 12px/1.4 Inter;color:rgba(245,235,221,.7)">desde el primer local</p></div>
       </div>
@@ -403,7 +402,7 @@ input::placeholder{color:rgba(217,198,168,.55)}
   <div style="display:flex;justify-content:space-between;align-items:end;gap:28px;flex-wrap:wrap;margin-top:22px">
     <div>
       <p style="margin:0 0 12px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#C9814A">Carta completa</p>
-      <h1 style="margin:0 0 12px;font:400 clamp(34px,5vw,64px)/1.05 'Playfair Display',serif">{{ b.nombre }} <em style="color:#E3B987">· {{ b.totalItems }} platos y tragos</em></h1>
+      <h1 style="margin:0 0 12px;font:400 clamp(34px,5vw,64px)/1.05 'Playfair Display',serif">{{ b.nombre }}</h1>
       <p style="margin:0;font:400 14px/1.6 Inter;color:rgba(245,235,221,.7)">{{ b.direccion }} · {{ b.horarioTexto }}</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end">
@@ -438,7 +437,14 @@ input::placeholder{color:rgba(217,198,168,.55)}
 </div>
 
 <section style="max-width:1240px;margin:0 auto;padding:34px 32px 80px;box-sizing:border-box;min-height:50vh">
-  <p style="margin:0 0 30px;font:400 13px Inter;color:rgba(245,235,221,.6)">{{ resultCount }} resultados</p>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:0 0 30px">
+    <p style="margin:0;font:400 13px Inter;color:rgba(245,235,221,.6)">{{ resultCount }} resultados</p>
+    <div style="display:flex;gap:4px;padding:4px;border-radius:999px;border:1px solid rgba(217,198,168,.25)">
+      <sc-for list="{{ modes }}" as="m" hint-placeholder-count="3">
+        <button onClick="{{ m.click }}" style="cursor:pointer;padding:8px 16px;border-radius:999px;border:0;background:{{ m.bg }};color:{{ m.fg }};font:600 11px Inter;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">{{ m.label }}</button>
+      </sc-for>
+    </div>
+  </div>
   <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}"><p style="font:italic 400 24px 'Playfair Display',serif;color:#D9C6A8">No encontramos nada con esa búsqueda. Probá con otra palabra.</p></sc-if>
   <sc-for list="{{ groups }}" as="cat" hint-placeholder-count="2">
     <div style="margin-bottom:56px">
@@ -447,22 +453,23 @@ input::placeholder{color:rgba(217,198,168,.55)}
       <sc-for list="{{ cat.groups }}" as="g" hint-placeholder-count="1">
         <div style="margin-bottom:26px">
           <p style="margin:0 0 6px;padding-bottom:10px;border-bottom:1px solid rgba(184,115,51,.55);font:600 11px Inter;letter-spacing:.24em;text-transform:uppercase;color:#C9814A">{{ g.name }}</p>
-          <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="3">
-            <article style="display:grid;grid-template-columns:{{ i.cols }};gap:8px 20px;align-items:start;padding:16px 0;border-bottom:1px solid rgba(217,198,168,.1)">
-              <sc-if value="{{ i.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ i.img }}" alt="{{ i.plainName }}" loading="lazy" style="width:92px;height:92px;object-fit:cover;border-radius:14px;background:#3b281c"></sc-if>
-              <div style="min-width:0">
+          <div style="{{ listStyle }}"><sc-for list="{{ g.items }}" as="i" hint-placeholder-count="3">
+            <article style="{{ i.artStyle }}">
+              <sc-if value="{{ i.showThumb }}" hint-placeholder-val="{{ false }}"><div role="img" aria-label="{{ i.plainName }}" style="{{ i.thumbStyle }}"></div></sc-if>
+              <div style="{{ i.bodyStyle }}">
                 <h3 style="margin:0;font:500 20px/1.3 'Playfair Display',serif;color:#F5EBDD"><sc-for list="{{ i.nameParts }}" as="p" hint-placeholder-count="1"><span style="{{ p.style }}">{{ p.text }}</span></sc-for></h3>
                 <p style="margin:4px 0 0;font:400 14px/1.6 Inter;color:rgba(245,235,221,.7)"><sc-for list="{{ i.descParts }}" as="p" hint-placeholder-count="1"><span style="{{ p.style }}">{{ p.text }}</span></sc-for></p>
                 <p style="margin:2px 0 0;font:italic 400 13.5px/1.5 Inter;color:#D9C6A8"><sc-for list="{{ i.optParts }}" as="p" hint-placeholder-count="1"><span style="{{ p.style }}">{{ p.text }}</span></sc-for></p>
                 <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><sc-for list="{{ i.tags }}" as="t" hint-placeholder-count="1"><span style="padding:3px 10px;border-radius:999px;border:1px solid rgba(217,198,168,.25);font:500 10.5px Inter;letter-spacing:.06em;color:#D9C6A8">{{ t }}</span></sc-for></div>
               </div>
-              <p style="margin:0;font:600 16px Inter;color:#E3B987;white-space:nowrap;text-align:right">{{ i.price }}</p>
+              <p style="{{ i.priceStyle }}">{{ i.price }}</p>
             </article>
-          </sc-for>
+          </sc-for></div>
         </div>
       </sc-for>
     </div>
   </sc-for>
+  <sc-if value="{{ hasMore }}" hint-placeholder-val="{{ false }}"><div style="text-align:center;margin:10px 0 40px"><button onClick="{{ more }}" style="cursor:pointer;padding:15px 30px;border-radius:999px;border:1px solid #B87333;background:transparent;color:#F5EBDD;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#B87333;color:#1A120D">{{ moreLabel }}</button></div></sc-if>
   <p style="margin:20px 0 0;font:400 13px Inter;color:rgba(245,235,221,.55)">{{ b.envio.titulo }}. {{ b.envio.detalle }}. · Los precios son en pesos argentinos y pueden variar sin aviso.</p>
 </section>
 </main>
@@ -534,7 +541,7 @@ function openInfo(h) {
 
 class Component extends DCLogic {
   idx = null;
-  state = { view: 'home', bid: 'belgrano', q: '', cat: 'all', tag: '', day: 'Lunes', navOpen: false, scrolled: 0, data: null };
+  state = { view: 'home', bid: 'belgrano', q: '', cat: 'all', tag: '', day: 'Lunes', navOpen: false, mode: 'simple', limit: 60, limitKey: '', scrolled: 0, data: null };
   cache = new Map();
 
   async componentDidMount() {
@@ -546,7 +553,7 @@ class Component extends DCLogic {
       const [b, s, be, ca] = await Promise.all([import('/data/build.js'), import('/data/search.js'), import('/data/belgrano.js'), import('/data/caballito.js')]);
       this.lib = { ...b, ...s };
       const im = await import('/data/imgs.js');
-      this.idx = { belgrano: im.IMGS.b.map((f) => ({ f: '/img/b/' + f, t: new Set(toks(f)) })), caballito: im.IMGS.c.map((f) => ({ f: '/img/c/' + f, t: new Set(toks(f)) })) };
+      this.idx = { belgrano: im.IMGS.b.map((f) => ({ f: '/img/t/b/' + f, t: new Set(toks(f)) })), caballito: im.IMGS.c.map((f) => ({ f: '/img/t/c/' + f, t: new Set(toks(f)) })) };
       this.setState({ data: { belgrano: b.buildMenu(be.belgrano), caballito: b.buildMenu(ca.caballito) } });
     } catch (e) { console.error(e); }
   }
@@ -580,7 +587,7 @@ class Component extends DCLogic {
       ofrezcas: [
         { title: 'Coctelería de Autor & Clásicos', img: '/img/tragos-b1.jpg', body: 'Desde un Negroni perfecto hasta una imponente selección de Whiskies y Single Malts premium para los verdaderos amantes del buen beber.' },
         { title: 'Cerveza Tirada', img: '/img/alcohol-b1.jpg', body: 'Las mejores variedades artesanales e internacionales servidas siempre en su punto justo.' },
-        { title: 'Cocina de Verdad', img: '/img/c/milanesa-the-oldest.jpeg', body: 'Platos abundantes, hamburguesas caseras épicas, las mejores picadas de la ciudad y nuestras famosas pastas que te hacen sentir como en casa.' },
+        { title: 'Cocina de Verdad', img: '/img/t/c/milanesa-the-oldest.jpg', body: 'Platos abundantes, hamburguesas caseras épicas, las mejores picadas de la ciudad y nuestras famosas pastas que te hacen sentir como en casa.' },
       ].map((p, i) => ({ ...p, delay: i * 0.1 + 's' })),
       testimonios: [
         { quote: 'Los mejores champignones rellenos de Buenos Aires y una atención que te hace sentir un habitué desde la primera noche. Un clásico que nunca falla.', who: 'Martín G.' },
@@ -599,7 +606,7 @@ class Component extends DCLogic {
         id, nombre: b.nombre, lema: b.lema, direccion: b.direccion, telefono: b.telefono, whatsapp: b.whatsapp,
         horarioTexto: b.horarioTexto, total: b.totalItems, openLabel: o.label, dot: o.dot,
         waHref: wa(b.whatsapp, b.whatsappTexto), mapsHref: maps(b.maps),
-        photo: id === 'belgrano' ? '/img/b/hamburguesa-fat-cat.jpg' : '/img/c/hamburguesa-harlem.jpeg',
+        photo: id === 'belgrano' ? '/img/t/b/hamburguesa-fat-cat.jpg' : '/img/t/c/hamburguesa-harlem.jpg',
         go: () => this.go('branch', id), goCarta: () => this.go('carta', id),
         cats: b.categorias.map((c) => ({ name: c.name, count: c.total, go: () => this.go('carta', id, { cat: c.id }) })),
       };
@@ -609,12 +616,12 @@ class Component extends DCLogic {
     Object.assign(v, {
       b, bOpen: o.label, bDot: o.dot, bWa: wa(b.whatsapp, b.whatsappTexto), bMaps: maps(b.maps),
       bCarta: () => this.go('carta', b.id), bBack: () => this.go('branch', b.id),
-      bMarquee: [b.horarioTexto, b.totalItems + ' platos y tragos', ...b.categorias.map((c) => c.name), b.horarioTexto, b.totalItems + ' platos y tragos', ...b.categorias.map((c) => c.name)],
+      bMarquee: [b.horarioTexto, ...b.categorias.map((c) => c.name), b.horarioTexto, ...b.categorias.map((c) => c.name)],
       promos: b.promos.map((p) => ({ ...p, border: p.destacado ? '#B87333' : 'rgba(217,198,168,.14)', bg: p.destacado ? 'linear-gradient(160deg,#3a2415,#2c1d14)' : '#2c1d14' })),
       catCount: b.categorias.length, avisos: b.avisos || [],
       apps: b.envio.apps.map((a) => ({ name: a, iconStyle: 'flex:none;width:24px;height:24px;border-radius:50%;background:#3b281c url(' + (/rappi/i.test(a) ? '/img/rappi.jpg' : '/img/pedidosya.jpg') + ') center/cover' })),
-      bHero: b.id === 'belgrano' ? '/img/tragos-b1.jpg' : '/img/c/hamburguesa-manhattan.jpeg',
-      bMos1: b.id === 'belgrano' ? '/img/b/hamburguesa-fat-cat.jpg' : '/img/c/hamburguesa-fat-cat.jpeg',
+      bHero: b.id === 'belgrano' ? '/img/tragos-b1.jpg' : '/img/t/c/hamburguesa-manhattan.jpg',
+      bMos1: b.id === 'belgrano' ? '/img/t/b/hamburguesa-fat-cat.jpg' : '/img/t/c/hamburguesa-fat-cat.jpg',
       bMos2: b.id === 'belgrano' ? '/img/tragos-b2.jpg' : '/img/tragos-c1.jpg',
       catCards: b.categorias.map((c) => {
         let img = '/img/hero-cartas.jpg';
@@ -646,7 +653,8 @@ class Component extends DCLogic {
       const scopeItems = inCat.flatMap((c) => c.groups.flatMap((g) => g.items));
       const hit = { background: '#B87333', color: '#1A120D', borderRadius: '3px', padding: '0 2px' };
       const parts = (text, ranges) => L.sliceByRanges(text || '', ranges).map((p) => ({ text: p.text, style: p.hit ? 'background:#B87333;color:#1A120D;border-radius:3px;padding:0 2px' : '' }));
-      let total = 0;
+      let total = 0, shown = 0;
+      const key = S.bid + '|' + S.cat + '|' + S.tag + '|' + S.q, lim = S.limitKey === key ? S.limit : 60;
       const groups = inCat.map((c) => ({
         name: c.name, blurb: c.blurb || '',
         groups: c.groups.map((g) => {
@@ -659,10 +667,15 @@ class Component extends DCLogic {
           });
           if (tokens.length) items.sort((a, z) => z.m.score - a.m.score);
           total += items.length;
+          items = items.slice(0, Math.max(0, lim - shown)); shown += items.length;
           return {
             name: g.name,
-            items: items.map(({ it, m }) => { const img = findImg(ix, it.name); return ({
-              img, hasImg: !!img, plainName: it.name, cols: img ? '92px 1fr auto' : '1fr auto',
+            items: items.map(({ it, m }) => { const img = findImg(ix, it.name); const md = S.mode; return ({
+              plainName: it.name, showThumb: md !== 'simple',
+              thumbStyle: (md === 'cards' ? 'width:100%;aspect-ratio:4/3;border-radius:0;' : 'width:92px;height:92px;border-radius:14px;') + 'background:#2c1d14 url(' + (img || '/img/logo.webp') + ') center/' + (img ? 'cover' : '46% auto') + ' no-repeat;' + (img ? '' : 'opacity:.85;'),
+              artStyle: md === 'cards' ? 'display:flex;flex-direction:column;gap:0;border-radius:18px;overflow:hidden;background:#2c1d14;border:1px solid rgba(217,198,168,.1)' : 'display:grid;grid-template-columns:' + (md === 'lista' ? '92px 1fr auto' : '1fr auto') + ';gap:8px 20px;align-items:start;padding:16px 0;border-bottom:1px solid rgba(217,198,168,.1)',
+              bodyStyle: md === 'cards' ? 'min-width:0;padding:16px 18px 10px;flex:1' : 'min-width:0',
+              priceStyle: 'margin:0;font:600 16px Inter;color:#E3B987;white-space:nowrap;' + (md === 'cards' ? 'padding:0 18px 18px;' : 'text-align:right'),
               nameParts: parts(it.name, m.ranges.name), descParts: parts(it.desc, m.ranges.desc), optParts: parts(it.options, m.ranges.options),
               price: money(it.price) + (it.priceNote ? ' · ' + it.priceNote : ''),
               tags: it.tags.map((t) => L.TAG_BY_ID[t].label).slice(0, 3),
@@ -672,9 +685,12 @@ class Component extends DCLogic {
       })).filter((c) => c.groups.length);
       const pill = (on) => ({ bg: on ? '#B87333' : 'transparent', fg: on ? '#1A120D' : '#F5EBDD', bd: on ? '#B87333' : 'rgba(217,198,168,.3)' });
       Object.assign(v, {
-        groups, resultCount: total, noResults: total === 0,
+        groups, resultCount: total, hasMore: shown < total, moreLabel: 'Mostrar más (' + (total - shown) + ')',
+        more: () => this.setState({ limit: lim + 60, limitKey: key }),
+        listStyle: S.mode === 'cards' ? 'display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;padding-top:16px' : '',
+        modes: [['simple', 'Lista simple'], ['lista', 'Lista'], ['cards', 'Cards']].map(([id, label]) => ({ label, click: () => this.setState({ mode: id }), bg: S.mode === id ? '#B87333' : 'transparent', fg: S.mode === id ? '#1A120D' : '#F5EBDD' })), noResults: total === 0,
         onQ: (e) => this.setState({ q: e.target.value }), clearQ: () => this.setState({ q: '', cat: 'all', tag: '' }),
-        catPills: [{ name: 'Todo', count: b.totalItems, click: () => this.setState({ cat: 'all' }), ...pill(S.cat === 'all') },
+        catPills: [{ name: 'Todo', count: '', click: () => this.setState({ cat: 'all' }), ...pill(S.cat === 'all') },
           ...b.categorias.map((c) => ({ name: c.name, count: c.total, click: () => this.setState({ cat: c.id }), ...pill(S.cat === c.id) }))],
         tagPills: L.tagCounts(scopeItems).map((t) => ({ label: t.label, count: t.count, click: () => this.setState({ tag: S.tag === t.id ? '' : t.id }), ...pill(S.tag === t.id) })),
       });
