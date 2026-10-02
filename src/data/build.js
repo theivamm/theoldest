@@ -1,4 +1,4 @@
-import { fold } from '../lib/search.jsx'
+import { fold } from './search.js'
 
 /* ============================================================================
    Carta data model
