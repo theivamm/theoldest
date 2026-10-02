@@ -1,1 +1,687 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=src/index.dc.html"><title>The Oldest Public Bar</title></head><body><a href="src/index.dc.html">Entrar</a></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>The Oldest Public Bar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./src/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#1A120D;-webkit-font-smoothing:antialiased}
+a{color:#D9C6A8;text-decoration:none}a:hover{color:#F5EBDD}
+::selection{background:#B87333;color:#1A120D}
+button{font-family:inherit}
+input::placeholder{color:rgba(217,198,168,.55)}
+@keyframes kb{from{transform:scale(1.04) translate3d(0,0,0)}to{transform:scale(1.14) translate3d(-1.5%,-1%,0)}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(120,170,90,.55)}50%{box-shadow:0 0 0 7px rgba(120,170,90,0)}}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.kb{animation:kb 22s ease-in-out infinite alternate}
+.mq{animation:marq 38s linear infinite}
+.hr{opacity:0;animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+[data-rv]{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+[data-rv].in{opacity:1;transform:none}
+.nv-burger{display:none!important}
+@media(max-width:1100px){.nv-links,.nv-cta{display:none!important}.nv-burger{display:flex!important}}
+.nv-links button,.nv-cta button{white-space:nowrap}
+@media(prefers-reduced-motion:reduce){.kb,.mq,.hr{animation:none;opacity:1}[data-rv]{opacity:1;transform:none}}
+</style>
+</helmet>
+<div style="background:#1A120D;color:#F5EBDD;font-family:Inter,sans-serif;min-height:100vh;position:relative;overflow-x:hidden">
+<div style="position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.07;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22/></filter><rect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22/></svg>')"></div>
+
+<!-- ============ NAV ============ -->
+<header style="position:fixed;top:0;left:0;right:0;z-index:80">
+  <div style="position:absolute;inset:0;background:rgba(26,18,13,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(217,198,168,.12);opacity:{{ navBg }};transition:opacity .3s"></div>
+  <div style="position:relative;max-width:1320px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <button onClick="{{ goHome }}" aria-label="The Oldest Public Bar, inicio" style="background:none;border:0;padding:0;cursor:pointer;display:flex;align-items:center;gap:14px">
+      <img src="src/img/logo.webp" alt="" width="92" height="64" style="height:74px;width:auto;object-fit:contain;margin:-10px 0">
+      <span style="font:500 10px/1.5 Inter;letter-spacing:.26em;text-transform:uppercase;color:#D9C6A8;text-align:left">Public Bar<br>Bs. As.</span>
+    </button>
+    <nav class="nv-links" style="display:flex;align-items:center;gap:36px">
+      <button onClick="{{ goHome }}" style="background:none;border:0;cursor:pointer;color:#F5EBDD;font:500 13px Inter;letter-spacing:.04em;padding:6px 0;border-bottom:1px solid transparent" style-hover="border-bottom-color:#B87333">Inicio</button>
+      <button onClick="{{ goB }}" style="background:none;border:0;cursor:pointer;color:#F5EBDD;font:500 13px Inter;letter-spacing:.04em;padding:6px 0;border-bottom:1px solid transparent" style-hover="border-bottom-color:#B87333">Belgrano R.</button>
+      <button onClick="{{ goC }}" style="background:none;border:0;cursor:pointer;color:#F5EBDD;font:500 13px Inter;letter-spacing:.04em;padding:6px 0;border-bottom:1px solid transparent" style-hover="border-bottom-color:#B87333">Caballito</button>
+    </nav>
+    <div class="nv-cta" style="display:flex;gap:10px">
+      <button onClick="{{ cartaB }}" style="cursor:pointer;padding:11px 20px;border-radius:999px;border:1px solid rgba(245,235,221,.5);background:transparent;color:#F5EBDD;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#B87333;border-color:#B87333;color:#1A120D">Carta Belgrano</button>
+      <button onClick="{{ cartaC }}" style="cursor:pointer;padding:11px 20px;border-radius:999px;border:1px solid rgba(245,235,221,.5);background:transparent;color:#F5EBDD;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#B87333;border-color:#B87333;color:#1A120D">Carta Caballito</button>
+    </div>
+    <button class="nv-burger" onClick="{{ toggleNav }}" aria-label="Menú" style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(245,235,221,.4);background:transparent;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px">
+      <span style="width:18px;height:1.5px;background:#F5EBDD"></span><span style="width:18px;height:1.5px;background:#F5EBDD"></span><span style="width:18px;height:1.5px;background:#F5EBDD"></span>
+    </button>
+  </div>
+  <sc-if value="{{ navOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative;background:#1A120D;border-top:1px solid rgba(217,198,168,.12);padding:12px 32px 24px;display:flex;flex-direction:column;gap:2px">
+      <button onClick="{{ goHome }}" style="text-align:left;background:none;border:0;color:#F5EBDD;font:500 22px 'Playfair Display',serif;padding:12px 0;cursor:pointer">Inicio</button>
+      <button onClick="{{ goB }}" style="text-align:left;background:none;border:0;color:#F5EBDD;font:500 22px 'Playfair Display',serif;padding:12px 0;cursor:pointer">Belgrano R.</button>
+      <button onClick="{{ goC }}" style="text-align:left;background:none;border:0;color:#F5EBDD;font:500 22px 'Playfair Display',serif;padding:12px 0;cursor:pointer">Caballito</button>
+      <div style="height:1px;background:rgba(217,198,168,.15);margin:8px 0"></div>
+      <button onClick="{{ cartaB }}" style="text-align:left;background:none;border:0;color:#D9C6A8;font:500 14px Inter;padding:12px 0;cursor:pointer">Ver la carta de Belgrano R.</button>
+      <button onClick="{{ cartaC }}" style="text-align:left;background:none;border:0;color:#D9C6A8;font:500 14px Inter;padding:12px 0;cursor:pointer">Ver la carta de Caballito</button>
+    </div>
+  </sc-if>
+</header>
+
+<!-- ======================================================= HOME ======================================================= -->
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<main>
+<section style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden">
+  <div class="kb" style="position:absolute;inset:-4%;background:url('src/img/hero-home.jpg') 70% 55%/cover no-repeat,#21160f"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,18,13,.6) 0%,rgba(26,18,13,.45) 40%,rgba(26,18,13,.95) 100%),linear-gradient(90deg,rgba(26,18,13,.92) 0%,rgba(26,18,13,.65) 50%,rgba(26,18,13,.2) 100%)"></div>
+  
+  <div style="position:relative;width:100%;max-width:1240px;margin:0 auto;padding:150px 32px 56px;box-sizing:border-box">
+    <p class="hr" style="margin:0 0 22px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#D9C6A8;animation-delay:.1s">Belgrano R. y Caballito &nbsp;·&nbsp; Buenos Aires</p>
+    <h1 class="hr" style="margin:0;font:400 clamp(44px,7.2vw,96px)/1.02 'Playfair Display',serif;letter-spacing:-.015em;color:#F5EBDD;max-width:11em;animation-delay:.25s">Elegí tu sucursal<br><em style="color:#E3B987;font-style:italic">más cercana</em></h1>
+    <p class="hr" style="margin:26px 0 0;max-width:560px;font:400 17px/1.65 Inter;color:rgba(245,235,221,.86);animation-delay:.45s">The Oldest Public Bar es un clásico pub y restaurante de Buenos Aires que funciona desde la década de 1980. Elegí el salón y te abrimos la carta completa: platos, tragos y la barra de siempre.</p>
+    <div class="hr" style="margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;animation-delay:.6s">
+      <button onClick="{{ cartaB }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:12px;padding:17px 30px;border-radius:999px;border:1px solid #B87333;background:#B87333;color:#1A120D;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#CF8A47;border-color:#CF8A47">¡Hacé tu pedido ahora! <span>→</span></button>
+      <a href="{{ waGeneral }}" target="_blank" rel="noreferrer noopener" style="display:inline-flex;align-items:center;padding:17px 30px;border-radius:999px;border:1px solid rgba(245,235,221,.55);color:#F5EBDD;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:rgba(245,235,221,.12)">Contactanos por WhatsApp</a>
+    </div>
+  </div>
+
+  <div style="position:relative;background:#F5EBDD;color:#1A120D;border-radius:28px 28px 0 0;box-shadow:0 -30px 60px rgba(0,0,0,.35)">
+    <div style="max-width:1240px;margin:0 auto;padding:34px 32px 38px;box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:22px">
+      <sc-for list="{{ cards }}" as="c" hint-placeholder-count="2">
+        <button onClick="{{ c.go }}" class="hr" style="animation-delay:.8s;text-align:left;cursor:pointer;border:1px solid rgba(26,18,13,.14);background:#FBF5EA;border-radius:18px;padding:0;display:grid;grid-template-columns:150px 1fr;overflow:hidden;color:#1A120D;transition:transform .35s,box-shadow .35s" style-hover="transform:translateY(-5px);box-shadow:0 22px 40px -18px rgba(63,42,30,.55)">
+          <div style="background:#3b281c url('{{ c.photo }}') center/cover no-repeat;min-height:150px"></div>
+          <div style="padding:20px 22px 20px">
+            <p style="margin:0;font:500 10px Inter;letter-spacing:.24em;text-transform:uppercase;color:#8a5a2c">{{ c.lema }}</p>
+            <h2 style="margin:6px 0 4px;font:500 30px/1.1 'Playfair Display',serif">{{ c.nombre }}</h2>
+            <p style="margin:0;font:400 14px Inter;color:#4b3626">{{ c.direccion }}</p>
+            <p style="margin:10px 0 0;display:flex;align-items:center;gap:8px;font:500 12px Inter;color:#4b3626"><span style="width:8px;height:8px;border-radius:50%;background:{{ c.dot }}"></span>{{ c.openLabel }} · {{ c.total }} platos y tragos</p>
+            <p style="margin:14px 0 0;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase;color:#8a5a2c">Entrar a {{ c.nombre }} →</p>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<div style="overflow:hidden;border-top:1px solid rgba(217,198,168,.12);border-bottom:1px solid rgba(217,198,168,.12);background:#150e0a;padding:20px 0">
+  <div class="mq" style="display:flex;width:max-content">
+    <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="8">
+      <span style="display:inline-flex;align-items:center;gap:34px;padding-right:34px;font:italic 400 26px 'Playfair Display',serif;color:#D9C6A8;white-space:nowrap">{{ m }}<span style="color:#B87333;font-style:normal;font-size:14px">◆</span></span>
+    </sc-for>
+  </div>
+</div>
+
+<section style="max-width:1240px;margin:0 auto;padding:120px 32px 40px;box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:end">
+  <div data-rv>
+    <p style="margin:0 0 18px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#C9814A">Bienvenidos</p>
+    <h2 style="margin:0;font:400 clamp(38px,5vw,68px)/1.06 'Playfair Display',serif;letter-spacing:-.01em">Donde la historia se junta con la <em style="color:#E3B987">buena barra.</em></h2>
+  </div>
+  <div data-rv style="transition-delay:.12s">
+    <p style="margin:0 0 28px;font:400 17px/1.75 Inter;color:rgba(245,235,221,.82)">Bienvenidos a The Oldest Public Bar, el secreto mejor guardado de Buenos Aires desde 1984. Un pub con alma británica, corazón porteño y la mística de los grandes clásicos.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px">
+      <a href="{{ waReserva }}" target="_blank" rel="noreferrer noopener" style="padding:15px 26px;border-radius:999px;background:#B87333;color:#1A120D;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#CF8A47;color:#1A120D">Reservá tu mesa</a>
+      <button onClick="{{ cartaB }}" style="cursor:pointer;padding:15px 26px;border-radius:999px;border:1px solid rgba(245,235,221,.5);background:transparent;color:#F5EBDD;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:rgba(245,235,221,.1)">Ver la carta</button>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:90px 32px 40px;box-sizing:border-box">
+  <div data-rv style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px">
+    <div>
+      <p style="margin:0 0 16px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#C9814A">Características y propuesta</p>
+      <h2 style="margin:0;font:400 clamp(32px,4vw,52px)/1.1 'Playfair Display',serif;max-width:15em">Un clásico que empezó en una calle de Belgrano</h2>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px">
+    <sc-for list="{{ propuesta }}" as="p" hint-placeholder-count="4">
+      <article data-rv style="background:linear-gradient(160deg,#2c1d14,#241811);border:1px solid rgba(217,198,168,.12);border-radius:20px;padding:30px 26px;transition-delay:{{ p.delay }}">
+        <svg viewBox="0 0 60 32" width="54" height="34" fill="none" stroke="#C9814A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ p.icon }}"></path></svg>
+        <p style="margin:22px 0 8px;font:500 10px Inter;letter-spacing:.26em;text-transform:uppercase;color:#D9C6A8">{{ p.key }}</p>
+        <h3 style="margin:0 0 12px;font:500 23px/1.2 'Playfair Display',serif">{{ p.title }}</h3>
+        <p style="margin:0;font:400 14.5px/1.7 Inter;color:rgba(245,235,221,.72)">{{ p.body }}</p>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section style="margin-top:90px;background:#F5EBDD;color:#1A120D;padding:110px 0 120px">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;box-sizing:border-box">
+    <div data-rv style="max-width:720px;margin:0 auto 64px;text-align:center">
+      <p style="margin:0 0 16px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#8a5a2c">El sabor de lo auténtico</p>
+      <h2 style="margin:0 0 22px;font:400 clamp(34px,4.6vw,60px)/1.08 'Playfair Display',serif">No somos solo un bar, somos una tradición entre copas</h2>
+      <p style="margin:0;font:400 17px/1.7 Inter;color:#4b3626">En The Oldest combinamos un ambiente cálido de madera y rock clásico con una propuesta gastronómica que te va a enamorar.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:26px">
+      <sc-for list="{{ ofrezcas }}" as="o" hint-placeholder-count="3">
+        <article data-rv style="transition-delay:{{ o.delay }}">
+          <img src="{{ o.img }}" alt="{{ o.title }}" loading="lazy" style="display:block;width:100%;aspect-ratio:4/4.4;object-fit:cover;border-radius:200px 200px 18px 18px;background:#3b281c">
+          <h3 style="margin:24px 0 10px;font:500 27px/1.15 'Playfair Display',serif">{{ o.title }}</h3>
+          <p style="margin:0;font:400 15px/1.7 Inter;color:#4b3626">{{ o.body }}</p>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:120px 32px 40px;box-sizing:border-box">
+  <div data-rv style="margin-bottom:44px">
+    <p style="margin:0 0 16px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#C9814A">Dónde la historia se junta con la buena barra</p>
+    <h2 style="margin:0 0 16px;font:400 clamp(32px,4vw,52px)/1.1 'Playfair Display',serif">Encontranos en tu barrio favorito</h2>
+    <p style="margin:0;max-width:560px;font:400 16px/1.7 Inter;color:rgba(245,235,221,.78)">Te esperamos todas las noches para cortar la semana, festejar con amigos o disfrutar de una cita inolvidable.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:22px">
+    <sc-for list="{{ cards }}" as="c" hint-placeholder-count="2">
+      <article data-rv style="background:#2c1d14;border:1px solid rgba(217,198,168,.12);border-radius:22px;padding:34px;display:flex;flex-direction:column;gap:18px">
+        <header style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <h3 style="margin:0;font:500 34px 'Playfair Display',serif">{{ c.nombre }}</h3>
+          <span style="display:inline-flex;align-items:center;gap:8px;font:500 12px Inter;color:#D9C6A8;padding:6px 12px;border:1px solid rgba(217,198,168,.25);border-radius:999px"><span style="width:8px;height:8px;border-radius:50%;background:{{ c.dot }}"></span>{{ c.openLabel }}</span>
+        </header>
+        <p style="margin:0;font:italic 400 20px 'Playfair Display',serif;color:#E3B987">{{ c.direccion }}</p>
+        <p style="margin:0;font:400 14px/1.6 Inter;color:rgba(245,235,221,.72)">{{ c.horarioTexto }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ c.cats }}" as="k" hint-placeholder-count="6">
+            <button onClick="{{ k.go }}" style="cursor:pointer;padding:8px 14px;border-radius:999px;border:1px solid rgba(217,198,168,.28);background:transparent;color:#F5EBDD;font:500 12.5px Inter;display:inline-flex;gap:8px" style-hover="background:#B87333;border-color:#B87333;color:#1A120D">{{ k.name }}<span style="opacity:.7">{{ k.count }}</span></button>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:8px">
+          <button onClick="{{ c.goCarta }}" style="cursor:pointer;padding:13px 22px;border-radius:999px;border:1px solid #B87333;background:#B87333;color:#1A120D;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#CF8A47">Ver la carta</button>
+          <a href="{{ c.waHref }}" target="_blank" rel="noreferrer noopener" style="padding:13px 22px;border-radius:999px;border:1px solid rgba(245,235,221,.45);color:#F5EBDD;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:rgba(245,235,221,.1)">WhatsApp</a>
+          <a href="{{ c.mapsHref }}" target="_blank" rel="noreferrer noopener" style="padding:13px 22px;border-radius:999px;color:#D9C6A8;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="color:#F5EBDD">Cómo llegar ↗</a>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:110px 32px 40px;box-sizing:border-box">
+  <div data-rv style="text-align:center;margin-bottom:48px">
+    <p style="margin:0 0 16px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#C9814A">Lo que dicen nuestros amigos</p>
+    <h2 style="margin:0;font:400 clamp(32px,4vw,52px)/1.1 'Playfair Display',serif">Un clásico que nunca falla</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:22px">
+    <sc-for list="{{ testimonios }}" as="t" hint-placeholder-count="2">
+      <figure data-rv style="margin:0;padding:40px 38px;border-radius:22px;background:linear-gradient(160deg,#2c1d14,#221610);border:1px solid rgba(217,198,168,.12);position:relative">
+        <span style="position:absolute;top:6px;left:30px;font:400 110px/1 'Playfair Display',serif;color:#B87333;opacity:.45">“</span>
+        <blockquote style="margin:30px 0 24px;font:italic 400 22px/1.55 'Playfair Display',serif;color:#F5EBDD">{{ t.quote }}</blockquote>
+        <figcaption style="display:flex;align-items:center;gap:12px;font:500 12px Inter;letter-spacing:.2em;text-transform:uppercase;color:#D9C6A8"><span style="width:28px;height:1px;background:#B87333"></span>{{ t.who }}</figcaption>
+      </figure>
+    </sc-for>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:120px 32px 110px;box-sizing:border-box">
+  <div data-rv style="border-radius:28px;padding:clamp(40px,6vw,84px) clamp(24px,5vw,72px);text-align:center;background:radial-gradient(60% 90% at 50% 0%,rgba(184,115,51,.32),transparent 70%),#2c1d14;border:1px solid rgba(217,198,168,.16)">
+    <p style="margin:0 0 18px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#E3B987">Reservas y pedidos</p>
+    <h2 style="margin:0 auto 18px;font:400 clamp(34px,5vw,64px)/1.08 'Playfair Display',serif;max-width:14em">¿Estás listo para vivir la experiencia?</h2>
+    <p style="margin:0 auto 34px;max-width:520px;font:400 17px/1.7 Inter;color:rgba(245,235,221,.82)">Vení a disfrutar de nuestro Happy Hour, nuestras noches de promos y la mejor música.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <button onClick="{{ cartaB }}" style="cursor:pointer;padding:17px 30px;border-radius:999px;border:1px solid #B87333;background:#B87333;color:#1A120D;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#CF8A47">¡Hacé tu pedido ahora!</button>
+      <a href="{{ waReserva }}" target="_blank" rel="noreferrer noopener" style="padding:17px 30px;border-radius:999px;border:1px solid rgba(245,235,221,.55);color:#F5EBDD;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:rgba(245,235,221,.12)">Reservá tu mesa</a>
+      <a href="{{ waGeneral }}" target="_blank" rel="noreferrer noopener" style="padding:17px 30px;border-radius:999px;color:#D9C6A8;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase">Contactanos por WhatsApp</a>
+    </div>
+    <div style="margin-top:48px;padding-top:34px;border-top:1px solid rgba(217,198,168,.16);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;text-align:center">
+      <sc-for list="{{ cards }}" as="c" hint-placeholder-count="2">
+        <div>
+          <p style="margin:0 0 8px;font:500 22px 'Playfair Display',serif">{{ c.nombre }}</p>
+          <p style="margin:0;font:400 14px/1.8 Inter;color:rgba(245,235,221,.75)">{{ c.direccion }}<br>Tel. {{ c.telefono }}<br>WhatsApp {{ c.whatsapp }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+</main>
+</sc-if>
+
+<!-- ======================================================= BRANCH ======================================================= -->
+<sc-if value="{{ isBranch }}" hint-placeholder-val="{{ false }}">
+<main>
+<section style="position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden">
+  <div class="kb" style="position:absolute;inset:-4%;background:url('{{ bHero }}') center/cover no-repeat,#21160f"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,18,13,.5),rgba(26,18,13,.94)),linear-gradient(90deg,rgba(26,18,13,.8),transparent 70%)"></div>
+    <div style="position:relative;max-width:1240px;width:100%;margin:0 auto;padding:150px 32px 64px;box-sizing:border-box">
+    <p class="hr" style="margin:0 0 20px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#D9C6A8">Sucursal {{ b.lema }} &nbsp;·&nbsp; {{ b.barrioFull }}</p>
+    <h1 class="hr" style="margin:0;font:400 clamp(52px,9vw,124px)/1 'Playfair Display',serif;letter-spacing:-.02em;animation-delay:.15s">{{ b.nombre }}</h1>
+    <p class="hr" style="margin:18px 0 0;font:italic 400 26px 'Playfair Display',serif;color:#E3B987;animation-delay:.3s">{{ b.direccion }}</p>
+    <div class="hr" style="margin-top:32px;display:flex;flex-wrap:wrap;gap:14px;animation-delay:.45s">
+      <button onClick="{{ bCarta }}" style="cursor:pointer;display:inline-flex;gap:12px;padding:17px 30px;border-radius:999px;border:1px solid #B87333;background:#B87333;color:#1A120D;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#CF8A47">Ver la carta <span>→</span></button>
+      <a href="{{ bWa }}" target="_blank" rel="noreferrer noopener" style="padding:17px 30px;border-radius:999px;border:1px solid rgba(245,235,221,.55);color:#F5EBDD;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:rgba(245,235,221,.12)">¡Hacé tu pedido ahora!</a>
+    </div>
+    <p class="hr" style="margin:28px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font:400 14px Inter;color:rgba(245,235,221,.85);animation-delay:.6s"><span style="display:inline-flex;align-items:center;gap:8px;font-weight:500"><span style="width:8px;height:8px;border-radius:50%;background:{{ bDot }}"></span>{{ bOpen }}</span><span>{{ b.envio.titulo }} · {{ b.envio.detalle }}</span></p>
+  </div>
+</section>
+
+<div style="overflow:hidden;border-top:1px solid rgba(217,198,168,.12);border-bottom:1px solid rgba(217,198,168,.12);background:#150e0a;padding:18px 0">
+  <div class="mq" style="display:flex;width:max-content">
+    <sc-for list="{{ bMarquee }}" as="m" hint-placeholder-count="8">
+      <span style="display:inline-flex;align-items:center;gap:34px;padding-right:34px;font:italic 400 22px 'Playfair Display',serif;color:#D9C6A8;white-space:nowrap">{{ m }}<span style="color:#B87333;font-style:normal;font-size:12px">◆</span></span>
+    </sc-for>
+  </div>
+</div>
+
+<section style="max-width:1240px;margin:0 auto;padding:100px 32px 20px;box-sizing:border-box">
+  <p data-rv style="margin:0 0 28px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#C9814A">Promos destacadas</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:16px">
+    <sc-for list="{{ promos }}" as="p" hint-placeholder-count="3">
+      <article data-rv style="padding:28px 26px;border-radius:20px;border:1px solid {{ p.border }};background:{{ p.bg }};display:flex;flex-direction:column;gap:10px">
+        <p style="margin:0;font:600 10.5px Inter;letter-spacing:.22em;text-transform:uppercase;color:#E3B987">{{ p.cuando }}</p>
+        <h3 style="margin:0;font:500 24px/1.2 'Playfair Display',serif">{{ p.titulo }}</h3>
+        <p style="margin:0;font:400 14.5px/1.65 Inter;color:rgba(245,235,221,.78)">{{ p.detalle }}</p>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<sc-if value="{{ hasEj }}" hint-placeholder-val="{{ false }}">
+<section style="margin-top:100px;background:#F5EBDD;color:#1A120D;padding:100px 0">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;box-sizing:border-box">
+    <div data-rv style="margin-bottom:36px;max-width:640px">
+      <p style="margin:0 0 14px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#8a5a2c">Almuerzo, de lunes a viernes</p>
+      <h2 style="margin:0 0 14px;font:400 clamp(32px,4vw,52px)/1.1 'Playfair Display',serif">{{ ej.titulo }}</h2>
+      <p style="margin:0;font:400 16px/1.7 Inter;color:#4b3626">Tres menús con bebida y postre. Cambia todos los días: elegí el día y mirá qué hay.</p>
+    </div>
+    <div data-rv style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px;margin-bottom:32px">
+      <sc-for list="{{ ejPrecios }}" as="e" hint-placeholder-count="3">
+        <div style="padding:18px 22px;border-radius:16px;background:#1A120D;color:#F5EBDD;display:flex;justify-content:space-between;align-items:baseline;gap:10px"><span style="font:500 12px Inter;letter-spacing:.16em;text-transform:uppercase;color:#D9C6A8">{{ e.nombre }}</span><span style="font:500 24px 'Playfair Display',serif">{{ e.precio }}</span></div>
+      </sc-for>
+    </div>
+    <div data-rv style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">
+      <sc-for list="{{ ejDias }}" as="d" hint-placeholder-count="5">
+        <button onClick="{{ d.click }}" style="cursor:pointer;padding:10px 20px;border-radius:999px;font:600 12px Inter;letter-spacing:.1em;text-transform:uppercase;border:1px solid #1A120D;background:{{ d.bg }};color:{{ d.fg }}">{{ d.dia }}</button>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+      <div style="padding:26px;border-radius:18px;background:#FBF5EA;border:1px solid rgba(26,18,13,.12)"><p style="margin:0 0 10px;font:600 10.5px Inter;letter-spacing:.24em;text-transform:uppercase;color:#8a5a2c">Entrada</p><sc-for list="{{ ejSel.entradas }}" as="x" hint-placeholder-count="1"><p style="margin:0 0 8px;font:400 15.5px/1.6 Inter">{{ x }}</p></sc-for></div>
+      <div style="padding:26px;border-radius:18px;background:#FBF5EA;border:1px solid rgba(26,18,13,.12)"><p style="margin:0 0 10px;font:600 10.5px Inter;letter-spacing:.24em;text-transform:uppercase;color:#8a5a2c">Principal</p><sc-for list="{{ ejSel.principales }}" as="x" hint-placeholder-count="1"><p style="margin:0 0 8px;font:400 15.5px/1.6 Inter">{{ x }}</p></sc-for></div>
+      <div style="padding:26px;border-radius:18px;background:#FBF5EA;border:1px solid rgba(26,18,13,.12)"><p style="margin:0 0 10px;font:600 10.5px Inter;letter-spacing:.24em;text-transform:uppercase;color:#8a5a2c">Postre</p><p style="margin:0;font:400 15.5px/1.6 Inter">{{ ejSel.postre }}</p></div>
+    </div>
+    <p style="margin:22px 0 0;font:400 13.5px Inter;color:#4b3626">{{ ej.nota }}</p>
+    <a href="{{ ejWa }}" target="_blank" rel="noreferrer noopener" style="display:inline-block;margin-top:18px;padding:14px 26px;border-radius:999px;background:#1A120D;color:#F5EBDD;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#B87333;color:#1A120D">Pedir el menú ejecutivo</a>
+  </div>
+</section>
+</sc-if>
+
+<section style="max-width:1240px;margin:0 auto;padding:110px 32px 20px;box-sizing:border-box">
+  <div data-rv style="margin-bottom:40px;display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap">
+    <div>
+      <p style="margin:0 0 14px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#C9814A">Lo que no podés dejar de mirar</p>
+      <h2 style="margin:0 0 12px;font:400 clamp(32px,4vw,52px)/1.1 'Playfair Display',serif">Favoritos de la barra</h2>
+      <p style="margin:0;max-width:520px;font:400 16px/1.7 Inter;color:rgba(245,235,221,.78)">Una selección corta de lo que más se pide. La carta completa tiene mucho más.</p>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px">
+    <sc-for list="{{ favs }}" as="f" hint-placeholder-count="6">
+      <article data-rv style="display:grid;grid-template-columns:96px 1fr;gap:18px;padding:16px;border-radius:18px;background:#2c1d14;border:1px solid rgba(217,198,168,.1)">
+        <div style="border-radius:12px;background:#3b281c url('{{ f.img }}') center/cover no-repeat;min-height:96px"></div>
+        <div style="min-width:0">
+          <p style="margin:0;font:500 10px Inter;letter-spacing:.2em;text-transform:uppercase;color:#C9814A">{{ f.cat }}</p>
+          <h3 style="margin:5px 0 6px;font:500 19px/1.25 'Playfair Display',serif">{{ f.name }}</h3>
+          <p style="margin:0 0 8px;font:400 13px/1.55 Inter;color:rgba(245,235,221,.7)">{{ f.desc }}</p>
+          <p style="margin:0;font:600 15px Inter;color:#E3B987">{{ f.price }}</p>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+  <div style="margin-top:36px"><button onClick="{{ bCarta }}" style="cursor:pointer;display:inline-flex;gap:12px;padding:17px 30px;border-radius:999px;border:1px solid #B87333;background:#B87333;color:#1A120D;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#CF8A47">Ver los {{ b.totalItems }} platos y tragos <span>→</span></button></div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:110px 32px 20px;box-sizing:border-box">
+  <p data-rv style="margin:0 0 14px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#C9814A">La carta</p>
+  <h2 data-rv style="margin:0 0 40px;font:400 clamp(32px,4vw,52px)/1.1 'Playfair Display',serif">Elegí por dónde empezar</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:14px">
+    <sc-for list="{{ catCards }}" as="k" hint-placeholder-count="6">
+      <button data-rv onClick="{{ k.go }}" style="text-align:left;cursor:pointer;color:#F5EBDD;padding:0;border-radius:18px;overflow:hidden;border:1px solid rgba(217,198,168,.12);background:#2c1d14;display:flex;flex-direction:column" style-hover="border-color:#B87333">
+        <div style="height:150px;background:#3b281c url('{{ k.img }}') center/cover no-repeat"></div>
+        <div style="padding:18px 20px 20px">
+          <h3 style="margin:0 0 6px;font:500 21px/1.2 'Playfair Display',serif">{{ k.name }}</h3>
+          <p style="margin:0 0 10px;font:400 13px/1.55 Inter;color:rgba(245,235,221,.68)">{{ k.blurb }}</p>
+          <p style="margin:0;font:600 11px Inter;letter-spacing:.14em;text-transform:uppercase;color:#C9814A">{{ k.total }} items →</p>
+        </div>
+      </button>
+    </sc-for>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:110px 32px 40px;box-sizing:border-box">
+  <p data-rv style="margin:0 0 14px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#C9814A">Vení a vernos</p>
+  <h2 data-rv style="margin:0 0 44px;font:400 clamp(32px,4vw,52px)/1.1 'Playfair Display',serif">{{ b.nombre }}: cómo pasar la noche</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:40px;align-items:start">
+    <div data-rv>
+      <h3 style="margin:0 0 16px;font:500 24px 'Playfair Display',serif">Horario de atención al público</h3>
+      <div style="border-top:1px solid rgba(217,198,168,.15)">
+        <sc-for list="{{ sched }}" as="s" hint-placeholder-count="7">
+          <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(217,198,168,.15);font:400 14.5px Inter"><span style="color:{{ s.color }};font-weight:{{ s.weight }}">{{ s.day }}</span><span style="color:rgba(245,235,221,.85)">{{ s.hours }}</span></div>
+        </sc-for>
+      </div>
+      <h4 style="margin:30px 0 8px;font:600 11px Inter;letter-spacing:.22em;text-transform:uppercase;color:#C9814A">Pedidos a domicilio</h4>
+      <p style="margin:0 0 12px;font:400 14.5px/1.6 Inter;color:rgba(245,235,221,.78)">{{ b.envio.detalle }}</p>
+      <div style="display:flex;gap:8px"><sc-for list="{{ apps }}" as="a" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 6px;border-radius:999px;border:1px solid rgba(217,198,168,.3);font:500 12px Inter;color:#D9C6A8"><span style="{{ a.iconStyle }}"></span>{{ a.name }}</span></sc-for></div>
+      <h4 style="margin:30px 0 8px;font:600 11px Inter;letter-spacing:.22em;text-transform:uppercase;color:#C9814A">Contactanos</h4>
+      <p style="margin:0;font:400 14.5px/1.9 Inter;color:rgba(245,235,221,.85)">{{ b.direccion }}<br>Tel. {{ b.telefono }}<br>WhatsApp {{ b.whatsapp }}</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px">
+        <a href="{{ bWa }}" target="_blank" rel="noreferrer noopener" style="padding:13px 22px;border-radius:999px;background:#B87333;color:#1A120D;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#CF8A47;color:#1A120D">Escribinos por WhatsApp</a>
+        <a href="{{ bMaps }}" target="_blank" rel="noreferrer noopener" style="padding:13px 22px;border-radius:999px;border:1px solid rgba(245,235,221,.45);color:#F5EBDD;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase">Cómo llegar ↗</a>
+      </div>
+    </div>
+    <div data-rv style="transition-delay:.12s">
+      <div style="display:grid;grid-template-columns:1.1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;aspect-ratio:4/3">
+        <div style="grid-row:span 2;border-radius:22px;background:#3b281c url('src/img/hero-contacto.jpg') center/cover no-repeat"></div>
+        <div style="border-radius:22px;background:#3b281c url('{{ bMos1 }}') center/cover no-repeat"></div>
+        <div style="border-radius:22px;background:#3b281c url('{{ bMos2 }}') center/cover no-repeat"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px">
+        <div style="padding:18px;border-radius:16px;background:#2c1d14;border:1px solid rgba(217,198,168,.1)"><p style="margin:0;font:500 32px 'Playfair Display',serif;color:#E3B987">{{ b.totalItems }}</p><p style="margin:4px 0 0;font:400 12px/1.4 Inter;color:rgba(245,235,221,.7)">items en la carta</p></div>
+        <div style="padding:18px;border-radius:16px;background:#2c1d14;border:1px solid rgba(217,198,168,.1)"><p style="margin:0;font:500 32px 'Playfair Display',serif;color:#E3B987">{{ catCount }}</p><p style="margin:4px 0 0;font:400 12px/1.4 Inter;color:rgba(245,235,221,.7)">secciones</p></div>
+        <div style="padding:18px;border-radius:16px;background:#2c1d14;border:1px solid rgba(217,198,168,.1)"><p style="margin:0;font:500 32px 'Playfair Display',serif;color:#E3B987">1984</p><p style="margin:4px 0 0;font:400 12px/1.4 Inter;color:rgba(245,235,221,.7)">desde el primer local</p></div>
+      </div>
+    </div>
+  </div>
+  <div data-rv style="margin-top:48px;padding:24px 28px;border-radius:18px;border:1px dashed rgba(217,198,168,.3)">
+    <p style="margin:0 0 8px;font:600 11px Inter;letter-spacing:.22em;text-transform:uppercase;color:#C9814A">Avisos</p>
+    <sc-for list="{{ avisos }}" as="a" hint-placeholder-count="2"><p style="margin:0 0 4px;font:400 14px/1.6 Inter;color:rgba(245,235,221,.75)">{{ a }}</p></sc-for>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:90px 32px 110px;box-sizing:border-box">
+  <div data-rv style="border-radius:28px;padding:clamp(40px,6vw,76px) clamp(24px,5vw,72px);text-align:center;background:radial-gradient(60% 90% at 50% 0%,rgba(184,115,51,.3),transparent 70%),#2c1d14;border:1px solid rgba(217,198,168,.16)">
+    <h2 style="margin:0 auto 16px;font:400 clamp(32px,4.4vw,56px)/1.08 'Playfair Display',serif;max-width:14em">Reservá tu mesa en {{ b.nombre }}</h2>
+    <p style="margin:0 auto 30px;max-width:520px;font:400 16.5px/1.7 Inter;color:rgba(245,235,221,.82)">Escribinos y te guardamos lugar. O pedí por Rappi y PedidosYa, todos los días.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+      <a href="{{ bWa }}" target="_blank" rel="noreferrer noopener" style="padding:17px 30px;border-radius:999px;background:#B87333;color:#1A120D;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#CF8A47;color:#1A120D">Escribinos por WhatsApp</a>
+      <button onClick="{{ bCarta }}" style="cursor:pointer;padding:17px 30px;border-radius:999px;border:1px solid rgba(245,235,221,.55);background:transparent;color:#F5EBDD;font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:rgba(245,235,221,.12)">Ver la carta</button>
+    </div>
+  </div>
+</section>
+</main>
+</sc-if>
+
+<!-- ======================================================= CARTA ======================================================= -->
+<sc-if value="{{ isCarta }}" hint-placeholder-val="{{ false }}">
+<main style="padding-top:110px">
+<header style="max-width:1240px;margin:0 auto;padding:30px 32px 10px;box-sizing:border-box">
+  <button onClick="{{ bBack }}" style="cursor:pointer;background:none;border:0;padding:0;color:#D9C6A8;font:500 12px Inter;letter-spacing:.16em;text-transform:uppercase">← Volver a {{ b.nombre }}</button>
+  <div style="display:flex;justify-content:space-between;align-items:end;gap:28px;flex-wrap:wrap;margin-top:22px">
+    <div>
+      <p style="margin:0 0 12px;font:500 11px Inter;letter-spacing:.3em;text-transform:uppercase;color:#C9814A">Carta completa</p>
+      <h1 style="margin:0 0 12px;font:400 clamp(34px,5vw,64px)/1.05 'Playfair Display',serif">{{ b.nombre }} <em style="color:#E3B987">· {{ b.totalItems }} platos y tragos</em></h1>
+      <p style="margin:0;font:400 14px/1.6 Inter;color:rgba(245,235,221,.7)">{{ b.direccion }} · {{ b.horarioTexto }}</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end">
+      <span style="display:inline-flex;align-items:center;gap:8px;font:500 12px Inter;color:#D9C6A8"><span style="width:8px;height:8px;border-radius:50%;background:{{ bDot }}"></span>{{ bOpen }}</span>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="{{ bWa }}" target="_blank" rel="noreferrer noopener" style="padding:11px 20px;border-radius:999px;background:#B87333;color:#1A120D;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase" style-hover="background:#CF8A47;color:#1A120D">Hacé tu pedido</a>
+        <a href="{{ bMaps }}" target="_blank" rel="noreferrer noopener" style="padding:11px 20px;border-radius:999px;border:1px solid rgba(245,235,221,.4);color:#F5EBDD;font:600 11px Inter;letter-spacing:.16em;text-transform:uppercase">Cómo llegar ↗</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div style="position:sticky;top:70px;z-index:40;margin-top:26px;background:rgba(26,18,13,.94);backdrop-filter:blur(14px);border-top:1px solid rgba(217,198,168,.12);border-bottom:1px solid rgba(217,198,168,.12)">
+  <div style="max-width:1240px;margin:0 auto;padding:16px 32px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:center;gap:14px;padding:0 20px;height:54px;border-radius:999px;background:#2c1d14;border:1px solid rgba(217,198,168,.22)">
+      <span style="color:#C9814A;font-size:18px">⌕</span>
+      <input value="{{ q }}" onChange="{{ onQ }}" placeholder="Buscá un plato, trago o ingrediente… (con o sin tildes)" style="flex:1;background:transparent;border:0;outline:0;color:#F5EBDD;font:400 16px Inter;min-width:0">
+      <button onClick="{{ clearQ }}" style="cursor:pointer;background:none;border:0;color:#D9C6A8;font:500 12px Inter;letter-spacing:.14em;text-transform:uppercase">Limpiar</button>
+    </div>
+    <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:2px">
+      <sc-for list="{{ catPills }}" as="k" hint-placeholder-count="6">
+        <button onClick="{{ k.click }}" style="flex:none;cursor:pointer;padding:9px 16px;border-radius:999px;border:1px solid {{ k.bd }};background:{{ k.bg }};color:{{ k.fg }};font:500 13px Inter;white-space:nowrap">{{ k.name }} <span style="opacity:.65">{{ k.count }}</span></button>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:8px;overflow-x:auto;align-items:center">
+      <span style="flex:none;font:600 10px Inter;letter-spacing:.22em;text-transform:uppercase;color:#C9814A;margin-right:4px">Filtrar</span>
+      <sc-for list="{{ tagPills }}" as="t" hint-placeholder-count="5">
+        <button onClick="{{ t.click }}" style="flex:none;cursor:pointer;padding:6px 14px;border-radius:999px;border:1px solid {{ t.bd }};background:{{ t.bg }};color:{{ t.fg }};font:500 12px Inter;white-space:nowrap">{{ t.label }} <span style="opacity:.65">{{ t.count }}</span></button>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+<section style="max-width:1240px;margin:0 auto;padding:34px 32px 80px;box-sizing:border-box;min-height:50vh">
+  <p style="margin:0 0 30px;font:400 13px Inter;color:rgba(245,235,221,.6)">{{ resultCount }} resultados</p>
+  <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}"><p style="font:italic 400 24px 'Playfair Display',serif;color:#D9C6A8">No encontramos nada con esa búsqueda. Probá con otra palabra.</p></sc-if>
+  <sc-for list="{{ groups }}" as="cat" hint-placeholder-count="2">
+    <div style="margin-bottom:56px">
+      <h2 style="margin:0 0 6px;font:400 clamp(30px,3.6vw,46px)/1.1 'Playfair Display',serif;color:#F5EBDD">{{ cat.name }}</h2>
+      <p style="margin:0 0 22px;font:400 14px/1.6 Inter;color:rgba(245,235,221,.62);max-width:620px">{{ cat.blurb }}</p>
+      <sc-for list="{{ cat.groups }}" as="g" hint-placeholder-count="1">
+        <div style="margin-bottom:26px">
+          <p style="margin:0 0 6px;padding-bottom:10px;border-bottom:1px solid rgba(184,115,51,.55);font:600 11px Inter;letter-spacing:.24em;text-transform:uppercase;color:#C9814A">{{ g.name }}</p>
+          <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="3">
+            <article style="display:grid;grid-template-columns:{{ i.cols }};gap:8px 20px;align-items:start;padding:16px 0;border-bottom:1px solid rgba(217,198,168,.1)">
+              <sc-if value="{{ i.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ i.img }}" alt="{{ i.plainName }}" loading="lazy" style="width:92px;height:92px;object-fit:cover;border-radius:14px;background:#3b281c"></sc-if>
+              <div style="min-width:0">
+                <h3 style="margin:0;font:500 20px/1.3 'Playfair Display',serif;color:#F5EBDD"><sc-for list="{{ i.nameParts }}" as="p" hint-placeholder-count="1"><span style="{{ p.style }}">{{ p.text }}</span></sc-for></h3>
+                <p style="margin:4px 0 0;font:400 14px/1.6 Inter;color:rgba(245,235,221,.7)"><sc-for list="{{ i.descParts }}" as="p" hint-placeholder-count="1"><span style="{{ p.style }}">{{ p.text }}</span></sc-for></p>
+                <p style="margin:2px 0 0;font:italic 400 13.5px/1.5 Inter;color:#D9C6A8"><sc-for list="{{ i.optParts }}" as="p" hint-placeholder-count="1"><span style="{{ p.style }}">{{ p.text }}</span></sc-for></p>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><sc-for list="{{ i.tags }}" as="t" hint-placeholder-count="1"><span style="padding:3px 10px;border-radius:999px;border:1px solid rgba(217,198,168,.25);font:500 10.5px Inter;letter-spacing:.06em;color:#D9C6A8">{{ t }}</span></sc-for></div>
+              </div>
+              <p style="margin:0;font:600 16px Inter;color:#E3B987;white-space:nowrap;text-align:right">{{ i.price }}</p>
+            </article>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </sc-for>
+  <p style="margin:20px 0 0;font:400 13px Inter;color:rgba(245,235,221,.55)">{{ b.envio.titulo }}. {{ b.envio.detalle }}. · Los precios son en pesos argentinos y pueden variar sin aviso.</p>
+</section>
+</main>
+</sc-if>
+
+<!-- ======================================================= FOOTER ======================================================= -->
+<footer style="background:#120b07;border-top:1px solid rgba(217,198,168,.12);padding:80px 0 30px">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;box-sizing:border-box">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:44px">
+      <div style="grid-column:span 1">
+        <img src="src/img/logo.webp" alt="The Oldest Public Bar" width="220" height="150" style="width:210px;height:auto;margin:-14px 0 10px -12px">
+        <p style="margin:0 0 14px;font:italic 400 20px/1.35 'Playfair Display',serif;color:#E3B987">Donde la historia se junta con la buena barra.</p>
+        <p style="margin:0;font:500 11px/1.8 Inter;letter-spacing:.2em;text-transform:uppercase;color:#D9C6A8">Barra de madera · Rock clásico · Desde 1984</p>
+      </div>
+      <sc-for list="{{ cards }}" as="c" hint-placeholder-count="2">
+        <div>
+          <h3 style="margin:0 0 14px;font:500 22px 'Playfair Display',serif">{{ c.nombre }}</h3>
+          <p style="margin:0 0 4px;font:400 14px/1.6 Inter;color:rgba(245,235,221,.7)">{{ c.direccion }}</p>
+          <p style="margin:0 0 16px;font:400 14px Inter;color:rgba(245,235,221,.7)">{{ c.telefono }}</p>
+          <button onClick="{{ c.go }}" style="display:block;cursor:pointer;background:none;border:0;padding:4px 0;color:#D9C6A8;font:500 13px Inter" style-hover="color:#B87333">Ver la sucursal</button>
+          <button onClick="{{ c.goCarta }}" style="display:block;cursor:pointer;background:none;border:0;padding:4px 0;color:#D9C6A8;font:500 13px Inter" style-hover="color:#B87333">Ver la carta</button>
+        </div>
+      </sc-for>
+      <div>
+        <h3 style="margin:0 0 14px;font:500 22px 'Playfair Display',serif">La Casa</h3>
+        <p style="margin:0 0 14px;font:400 14px/1.6 Inter;color:rgba(245,235,221,.7)">Un clásico pub y restaurante de Buenos Aires que funciona desde la década de 1980.</p>
+        <p style="margin:0;font:400 12.5px/1.6 Inter;color:rgba(245,235,221,.5)">Los precios son en pesos argentinos y pueden variar sin aviso.</p>
+      </div>
+    </div>
+    <div style="margin-top:60px;padding-top:24px;border-top:1px solid rgba(217,198,168,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:400 12.5px Inter;color:rgba(245,235,221,.5)">
+      <span>© {{ year }} The Oldest Public Bar</span><span>Belgrano R. y Caballito · Buenos Aires</span>
+    </div>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const HERO_ICON = {
+  Historia: 'M18 4h20v14a10 10 0 01-10 10h0a10 10 0 01-10-10z M14 12h28 M14 18h28',
+  Ambiente: 'M6 24V10l10-4 10 4v14z M30 24V10l10 4v10z M14 24v-6h4v6 M34 18h3',
+  'Gastronomía y bebidas': 'M10 4h8l-4 8v8 M18 4l4 8 M12 22h4v6h-4z M30 8h12l-2 10h-8z M30 8l-1 10',
+  Promociones: 'M28 4l2.6 6.4L37 11l-4.6 4 1.4 6.6L28 18.4 22.2 21.6 23.6 15 19 11l6.4-.6z',
+};
+const STOP = new Set(['de','con','y','la','el','los','las','del','al','a','en','o','un','una']);
+const toks = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\.[a-z]+$/, '').split(/[^a-z0-9]+/).filter((w) => w && !STOP.has(w));
+function findImg(idx, name) {
+  const t = new Set(toks(name)); if (!t.size) return null;
+  let best = null, bs = 0;
+  idx.forEach((e) => {
+    let n = 0; e.t.forEach((w) => { if (t.has(w)) n++; });
+    if (!n) return;
+    const sc = n / (t.size + e.t.size - n);
+    if (n / t.size >= 0.7 && n / e.t.size >= 0.5 && sc > bs) { bs = sc; best = e.f; }
+  });
+  return best;
+}
+const DAYS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const wa = (phone, text) => 'https://wa.me/' + String(phone).replace(/\D/g, '') + '?text=' + encodeURIComponent(text);
+const maps = (q) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+const ars = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 });
+const money = (v) => (v == null ? 'Consultar' : '$ ' + ars.format(v));
+const hm = (m) => Math.floor((m % 1440) / 60) + ':' + String(m % 60).padStart(2, '0');
+function openInfo(h) {
+  const n = new Date(), d = n.getDay(), m = n.getHours() * 60 + n.getMinutes();
+  const t = h[d], y = h[(d + 6) % 7];
+  const on = (t && (t[1] > t[0] ? m >= t[0] && m < t[1] : m >= t[0])) || (y && y[1] < y[0] && m < y[1]);
+  return { label: on ? 'Abierto ahora' : 'Cerrado ahora', dot: on ? '#78aa5a' : '#a35a4a' };
+}
+
+class Component extends DCLogic {
+  idx = null;
+  state = { view: 'home', bid: 'belgrano', q: '', cat: 'all', tag: '', day: 'Lunes', navOpen: false, scrolled: 0, data: null };
+  cache = new Map();
+
+  async componentDidMount() {
+    this._onScroll = () => { const s = Math.min(1, window.scrollY / 80); if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); this._io.unobserve(e.target); } }), { threshold: 0.12 });
+    this.observe();
+    try {
+      const [b, s, be, ca] = await Promise.all([import('./src/data/build.js'), import('./src/data/search.js'), import('./src/data/belgrano.js'), import('./src/data/caballito.js')]);
+      this.lib = { ...b, ...s };
+      const im = await import('./src/data/imgs.js');
+      this.idx = { belgrano: im.IMGS.b.map((f) => ({ f: 'src/img/b/' + f, t: new Set(toks(f)) })), caballito: im.IMGS.c.map((f) => ({ f: 'src/img/c/' + f, t: new Set(toks(f)) })) };
+      this.setState({ data: { belgrano: b.buildMenu(be.belgrano), caballito: b.buildMenu(ca.caballito) } });
+    } catch (e) { console.error(e); }
+  }
+  componentDidUpdate() { this.observe(); }
+  componentWillUnmount() { window.removeEventListener('scroll', this._onScroll); this._io && this._io.disconnect(); }
+  observe() {
+    document.querySelectorAll('[data-rv]:not(.in):not([data-o])').forEach((el) => { el.setAttribute('data-o', '1'); this._io.observe(el); });
+  }
+  go(view, bid, extra) {
+    this.setState({ view, bid: bid || this.state.bid, q: '', cat: 'all', tag: '', navOpen: false, ...(extra || {}) });
+    window.scrollTo(0, 0);
+  }
+
+  renderVals() {
+    const S = this.state, D = S.data;
+    const v = {
+      navBg: S.scrolled, navOpen: S.navOpen, year: new Date().getFullYear(),
+      toggleNav: () => this.setState((s) => ({ navOpen: !s.navOpen })),
+      goHome: () => this.go('home'), goB: () => this.go('branch', 'belgrano'), goC: () => this.go('branch', 'caballito'),
+      cartaB: () => this.go('carta', 'belgrano'), cartaC: () => this.go('carta', 'caballito'),
+      isHome: S.view === 'home', isBranch: S.view === 'branch' && !!D, isCarta: S.view === 'carta' && !!D,
+      waGeneral: wa('11 6932-3962', 'Hola The Oldest! Quiero consultar por un pedido.'),
+      waReserva: wa('11 6932-3962', 'Hola The Oldest! Quiero reservar una mesa.'),
+      marquee: ['Cerveza tirada','Coctelería de autor','Hamburguesas gourmet','Picadas para compartir','Pastas de la casa','Whiskies y single malts','Postres caseros','Happy hour','Cerveza tirada','Coctelería de autor','Hamburguesas gourmet','Picadas para compartir','Pastas de la casa','Whiskies y single malts','Postres caseros','Happy hour'],
+      propuesta: [
+        { key: 'Historia', title: 'Un local chico en la calle Freire', body: 'Sus orígenes se remontan a 1984/1985 con un primer local pequeño en el barrio de Belgrano (en la calle Freire), antes de mudarse y expandirse a Caballito y su ubicación actual en Belgrano R.' },
+        { key: 'Ambiente', title: 'Madera, murales y objetos de colección', body: 'Decoración clásica de estilo antiguo con una icónica barra de madera, murales psicodélicos (destacando a Los Beatles) y objetos de colección aportados por los clientes.' },
+        { key: 'Gastronomía y bebidas', title: 'Coctelería de autor y cerveza tirada', body: 'Ofrece coctelería de autor, picadas, hamburguesas (como la "Fat Cat"), platos gourmet y variedad de cervezas tiradas (Pintas entre $4.000 y $7.000 ARS según tipo).' },
+        { key: 'Promociones', title: 'Lunes de pastas y sábados de Negroni', body: 'Lunes de pastas al 50% de descuento en la sucursal Belgrano R, y happy hour en Negroni y Gin & Tonic los sábados hasta las 20:00.' },
+      ].map((p, i) => ({ ...p, icon: HERO_ICON[p.key], delay: i * 0.08 + 's' })),
+      ofrezcas: [
+        { title: 'Coctelería de Autor & Clásicos', img: 'src/img/tragos-b1.jpg', body: 'Desde un Negroni perfecto hasta una imponente selección de Whiskies y Single Malts premium para los verdaderos amantes del buen beber.' },
+        { title: 'Cerveza Tirada', img: 'src/img/alcohol-b1.jpg', body: 'Las mejores variedades artesanales e internacionales servidas siempre en su punto justo.' },
+        { title: 'Cocina de Verdad', img: 'src/img/c/milanesa-the-oldest.jpeg', body: 'Platos abundantes, hamburguesas caseras épicas, las mejores picadas de la ciudad y nuestras famosas pastas que te hacen sentir como en casa.' },
+      ].map((p, i) => ({ ...p, delay: i * 0.1 + 's' })),
+      testimonios: [
+        { quote: 'Los mejores champignones rellenos de Buenos Aires y una atención que te hace sentir un habitué desde la primera noche. Un clásico que nunca falla.', who: 'Martín G.' },
+        { quote: 'La barra de madera, la música de Los Beatles de fondo y la variedad de whiskies es de otro planeta. Ir a The Oldest es un viaje de ida.', who: 'Laura S.' },
+      ],
+      cards: [], b: { envio: {} }, hasEj: false, ej: {}, ejPrecios: [], ejDias: [], ejSel: { entradas: [] }, ejWa: '',
+      bHero: 'src/img/hero-cartas.jpg', bMos1: '', bMos2: '', bMarquee: [], promos: [], favs: [], catCards: [], sched: [], apps: [], avisos: [], catCount: 0,
+      bOpen: '', bDot: '#78aa5a', bWa: '#', bMaps: '#', bCarta: () => {}, bBack: () => {},
+      q: S.q, onQ: () => {}, clearQ: () => {}, catPills: [], tagPills: [], groups: [], resultCount: 0, noResults: false,
+    };
+    if (!D) return v;
+
+    v.cards = ['belgrano', 'caballito'].map((id) => {
+      const b = D[id], o = openInfo(b.horarios);
+      return {
+        id, nombre: b.nombre, lema: b.lema, direccion: b.direccion, telefono: b.telefono, whatsapp: b.whatsapp,
+        horarioTexto: b.horarioTexto, total: b.totalItems, openLabel: o.label, dot: o.dot,
+        waHref: wa(b.whatsapp, b.whatsappTexto), mapsHref: maps(b.maps),
+        photo: id === 'belgrano' ? 'src/img/b/hamburguesa-fat-cat.jpg' : 'src/img/c/hamburguesa-harlem.jpeg',
+        go: () => this.go('branch', id), goCarta: () => this.go('carta', id),
+        cats: b.categorias.map((c) => ({ name: c.name, count: c.total, go: () => this.go('carta', id, { cat: c.id }) })),
+      };
+    });
+
+    const b = D[S.bid], o = openInfo(b.horarios), L = this.lib;
+    Object.assign(v, {
+      b, bOpen: o.label, bDot: o.dot, bWa: wa(b.whatsapp, b.whatsappTexto), bMaps: maps(b.maps),
+      bCarta: () => this.go('carta', b.id), bBack: () => this.go('branch', b.id),
+      bMarquee: [b.horarioTexto, b.totalItems + ' platos y tragos', ...b.categorias.map((c) => c.name), b.horarioTexto, b.totalItems + ' platos y tragos', ...b.categorias.map((c) => c.name)],
+      promos: b.promos.map((p) => ({ ...p, border: p.destacado ? '#B87333' : 'rgba(217,198,168,.14)', bg: p.destacado ? 'linear-gradient(160deg,#3a2415,#2c1d14)' : '#2c1d14' })),
+      catCount: b.categorias.length, avisos: b.avisos || [],
+      apps: b.envio.apps.map((a) => ({ name: a, iconStyle: 'flex:none;width:24px;height:24px;border-radius:50%;background:#3b281c url(' + (/rappi/i.test(a) ? 'src/img/rappi.jpg' : 'src/img/pedidosya.jpg') + ') center/cover' })),
+      bHero: b.id === 'belgrano' ? 'src/img/tragos-b1.jpg' : 'src/img/c/hamburguesa-manhattan.jpeg',
+      bMos1: b.id === 'belgrano' ? 'src/img/b/hamburguesa-fat-cat.jpg' : 'src/img/c/hamburguesa-fat-cat.jpeg',
+      bMos2: b.id === 'belgrano' ? 'src/img/tragos-b2.jpg' : 'src/img/tragos-c1.jpg',
+      catCards: b.categorias.map((c) => {
+        let img = 'src/img/hero-cartas.jpg';
+        for (const g of c.groups) { for (const it of g.items) { const f = this.idx && findImg(this.idx[b.id], it.name); if (f) { img = f; break; } } if (img !== 'src/img/hero-cartas.jpg') break; }
+        return { name: c.name, blurb: c.blurb || '', total: c.total, img, go: () => this.go('carta', b.id, { cat: c.id }) };
+      }),
+      sched: [1, 2, 3, 4, 5, 6, 0].map((d) => {
+        const h = b.horarios[d], today = new Date().getDay() === d;
+        return { day: DAYS[d], hours: hm(h[0]) + ' a ' + hm(h[1]) + ' hs', color: today ? '#E3B987' : '#D9C6A8', weight: today ? 600 : 400 };
+      }),
+    });
+    const flat = L.flatten(b);
+    const ix = this.idx ? this.idx[b.id] : [];
+    v.favs = flat.filter((i) => i.favorite).map((i) => ({ name: i.name, desc: i.desc, cat: i.groupName, price: money(i.price), img: findImg(ix, i.name) })).filter((f) => f.img).slice(0, 6);
+
+    if (b.menuEjecutivo) {
+      const m = b.menuEjecutivo, sel = m.dias.find((d) => d.dia === S.day) || m.dias[0];
+      Object.assign(v, {
+        hasEj: true, ej: m, ejSel: sel,
+        ejPrecios: m.precios.map((p) => ({ nombre: p.nombre, precio: money(p.precio) })),
+        ejDias: m.dias.map((d) => ({ dia: d.dia, click: () => this.setState({ day: d.dia }), bg: d.dia === sel.dia ? '#1A120D' : 'transparent', fg: d.dia === sel.dia ? '#F5EBDD' : '#1A120D' })),
+        ejWa: wa(b.whatsapp, 'Hola The Oldest! Quiero el menú ejecutivo de Belgrano R.'),
+      });
+    }
+
+    if (S.view === 'carta') {
+      const tokens = L.parseQuery(S.q);
+      const inCat = b.categorias.filter((c) => S.cat === 'all' || c.id === S.cat);
+      const scopeItems = inCat.flatMap((c) => c.groups.flatMap((g) => g.items));
+      const hit = { background: '#B87333', color: '#1A120D', borderRadius: '3px', padding: '0 2px' };
+      const parts = (text, ranges) => L.sliceByRanges(text || '', ranges).map((p) => ({ text: p.text, style: p.hit ? 'background:#B87333;color:#1A120D;border-radius:3px;padding:0 2px' : '' }));
+      let total = 0;
+      const groups = inCat.map((c) => ({
+        name: c.name, blurb: c.blurb || '',
+        groups: c.groups.map((g) => {
+          let items = [];
+          g.items.forEach((it) => {
+            if (S.tag && !it.tags.includes(S.tag)) return;
+            const m = L.matchItem(it, tokens, this.cache);
+            if (!m) return;
+            items.push({ it, m });
+          });
+          if (tokens.length) items.sort((a, z) => z.m.score - a.m.score);
+          total += items.length;
+          return {
+            name: g.name,
+            items: items.map(({ it, m }) => { const img = findImg(ix, it.name); return ({
+              img, hasImg: !!img, plainName: it.name, cols: img ? '92px 1fr auto' : '1fr auto',
+              nameParts: parts(it.name, m.ranges.name), descParts: parts(it.desc, m.ranges.desc), optParts: parts(it.options, m.ranges.options),
+              price: money(it.price) + (it.priceNote ? ' · ' + it.priceNote : ''),
+              tags: it.tags.map((t) => L.TAG_BY_ID[t].label).slice(0, 3),
+            }); }),
+          };
+        }).filter((g) => g.items.length),
+      })).filter((c) => c.groups.length);
+      const pill = (on) => ({ bg: on ? '#B87333' : 'transparent', fg: on ? '#1A120D' : '#F5EBDD', bd: on ? '#B87333' : 'rgba(217,198,168,.3)' });
+      Object.assign(v, {
+        groups, resultCount: total, noResults: total === 0,
+        onQ: (e) => this.setState({ q: e.target.value }), clearQ: () => this.setState({ q: '', cat: 'all', tag: '' }),
+        catPills: [{ name: 'Todo', count: b.totalItems, click: () => this.setState({ cat: 'all' }), ...pill(S.cat === 'all') },
+          ...b.categorias.map((c) => ({ name: c.name, count: c.total, click: () => this.setState({ cat: c.id }), ...pill(S.cat === c.id) }))],
+        tagPills: L.tagCounts(scopeItems).map((t) => ({ label: t.label, count: t.count, click: () => this.setState({ tag: S.tag === t.id ? '' : t.id }), ...pill(S.tag === t.id) })),
+      });
+    }
+    return v;
+  }
+}
+</script>
+</body>
+</html>

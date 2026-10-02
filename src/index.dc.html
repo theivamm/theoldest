@@ -354,7 +354,7 @@ input::placeholder{color:rgba(217,198,168,.55)}
       </div>
       <h4 style="margin:30px 0 8px;font:600 11px Inter;letter-spacing:.22em;text-transform:uppercase;color:#C9814A">Pedidos a domicilio</h4>
       <p style="margin:0 0 12px;font:400 14.5px/1.6 Inter;color:rgba(245,235,221,.78)">{{ b.envio.detalle }}</p>
-      <div style="display:flex;gap:8px"><sc-for list="{{ apps }}" as="a" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 6px;border-radius:999px;border:1px solid rgba(217,198,168,.3);font:500 12px Inter;color:#D9C6A8"><sc-if value="{{ a.icon }}" hint-placeholder-val="{{ false }}"><img src="{{ a.icon }}" alt="" width="24" height="24" style="width:24px;height:24px;border-radius:50%;object-fit:cover"></sc-if>{{ a.name }}</span></sc-for></div>
+      <div style="display:flex;gap:8px"><sc-for list="{{ apps }}" as="a" hint-placeholder-count="2"><span style="display:inline-flex;align-items:center;gap:8px;padding:5px 14px 5px 6px;border-radius:999px;border:1px solid rgba(217,198,168,.3);font:500 12px Inter;color:#D9C6A8"><span style="{{ a.iconStyle }}"></span>{{ a.name }}</span></sc-for></div>
       <h4 style="margin:30px 0 8px;font:600 11px Inter;letter-spacing:.22em;text-transform:uppercase;color:#C9814A">Contactanos</h4>
       <p style="margin:0;font:400 14.5px/1.9 Inter;color:rgba(245,235,221,.85)">{{ b.direccion }}<br>Tel. {{ b.telefono }}<br>WhatsApp {{ b.whatsapp }}</p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px">
@@ -611,7 +611,7 @@ class Component extends DCLogic {
       bMarquee: [b.horarioTexto, b.totalItems + ' platos y tragos', ...b.categorias.map((c) => c.name), b.horarioTexto, b.totalItems + ' platos y tragos', ...b.categorias.map((c) => c.name)],
       promos: b.promos.map((p) => ({ ...p, border: p.destacado ? '#B87333' : 'rgba(217,198,168,.14)', bg: p.destacado ? 'linear-gradient(160deg,#3a2415,#2c1d14)' : '#2c1d14' })),
       catCount: b.categorias.length, avisos: b.avisos || [],
-      apps: b.envio.apps.map((a) => ({ name: a, icon: /rappi/i.test(a) ? 'img/rappi.jpg' : 'img/pedidosya.jpg' })),
+      apps: b.envio.apps.map((a) => ({ name: a, iconStyle: 'flex:none;width:24px;height:24px;border-radius:50%;background:#3b281c url(' + (/rappi/i.test(a) ? 'img/rappi.jpg' : 'img/pedidosya.jpg') + ') center/cover' })),
       bHero: b.id === 'belgrano' ? 'img/tragos-b1.jpg' : 'img/c/hamburguesa-manhattan.jpeg',
       bMos1: b.id === 'belgrano' ? 'img/b/hamburguesa-fat-cat.jpg' : 'img/c/hamburguesa-fat-cat.jpeg',
       bMos2: b.id === 'belgrano' ? 'img/tragos-b2.jpg' : 'img/tragos-c1.jpg',
