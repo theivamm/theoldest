@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>The Oldest Public Bar</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./src/support.js"></script>
+<script src="/support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -41,7 +41,7 @@ input::placeholder{color:rgba(217,198,168,.55)}
   <div style="position:absolute;inset:0;background:rgba(26,18,13,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(217,198,168,.12);opacity:{{ navBg }};transition:opacity .3s"></div>
   <div style="position:relative;max-width:1320px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px">
     <button onClick="{{ goHome }}" aria-label="The Oldest Public Bar, inicio" style="background:none;border:0;padding:0;cursor:pointer;display:flex;align-items:center;gap:14px">
-      <img src="src/img/logo.webp" alt="" width="92" height="64" style="height:74px;width:auto;object-fit:contain;margin:-10px 0">
+      <img src="/img/logo.webp" alt="" width="92" height="64" style="height:74px;width:auto;object-fit:contain;margin:-10px 0">
       <span style="font:500 10px/1.5 Inter;letter-spacing:.26em;text-transform:uppercase;color:#D9C6A8;text-align:left">Public Bar<br>Bs. As.</span>
     </button>
     <nav class="nv-links" style="display:flex;align-items:center;gap:36px">
@@ -73,7 +73,7 @@ input::placeholder{color:rgba(217,198,168,.55)}
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
 <main>
 <section style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden">
-  <div class="kb" style="position:absolute;inset:-4%;background:url('src/img/hero-home.jpg') 70% 55%/cover no-repeat,#21160f"></div>
+  <div class="kb" style="position:absolute;inset:-4%;background:url('/img/hero-home.jpg') 70% 55%/cover no-repeat,#21160f"></div>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,18,13,.6) 0%,rgba(26,18,13,.45) 40%,rgba(26,18,13,.95) 100%),linear-gradient(90deg,rgba(26,18,13,.92) 0%,rgba(26,18,13,.65) 50%,rgba(26,18,13,.2) 100%)"></div>
   
   <div style="position:relative;width:100%;max-width:1240px;margin:0 auto;padding:150px 32px 56px;box-sizing:border-box">
@@ -365,7 +365,7 @@ input::placeholder{color:rgba(217,198,168,.55)}
     </div>
     <div data-rv style="transition-delay:.12s">
       <div style="display:grid;grid-template-columns:1.1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;aspect-ratio:4/3">
-        <div style="grid-row:span 2;border-radius:22px;background:#3b281c url('src/img/hero-contacto.jpg') center/cover no-repeat"></div>
+        <div style="grid-row:span 2;border-radius:22px;background:#3b281c url('/img/hero-contacto.jpg') center/cover no-repeat"></div>
         <div style="border-radius:22px;background:#3b281c url('{{ bMos1 }}') center/cover no-repeat"></div>
         <div style="border-radius:22px;background:#3b281c url('{{ bMos2 }}') center/cover no-repeat"></div>
       </div>
@@ -473,7 +473,7 @@ input::placeholder{color:rgba(217,198,168,.55)}
   <div style="max-width:1240px;margin:0 auto;padding:0 32px;box-sizing:border-box">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:44px">
       <div style="grid-column:span 1">
-        <img src="src/img/logo.webp" alt="The Oldest Public Bar" width="220" height="150" style="width:210px;height:auto;margin:-14px 0 10px -12px">
+        <img src="/img/logo.webp" alt="The Oldest Public Bar" width="220" height="150" style="width:210px;height:auto;margin:-14px 0 10px -12px">
         <p style="margin:0 0 14px;font:italic 400 20px/1.35 'Playfair Display',serif;color:#E3B987">Donde la historia se junta con la buena barra.</p>
         <p style="margin:0;font:500 11px/1.8 Inter;letter-spacing:.2em;text-transform:uppercase;color:#D9C6A8">Barra de madera · Rock clásico · Desde 1984</p>
       </div>
@@ -543,10 +543,10 @@ class Component extends DCLogic {
     this._io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); this._io.unobserve(e.target); } }), { threshold: 0.12 });
     this.observe();
     try {
-      const [b, s, be, ca] = await Promise.all([import('./src/data/build.js'), import('./src/data/search.js'), import('./src/data/belgrano.js'), import('./src/data/caballito.js')]);
+      const [b, s, be, ca] = await Promise.all([import('/data/build.js'), import('/data/search.js'), import('/data/belgrano.js'), import('/data/caballito.js')]);
       this.lib = { ...b, ...s };
-      const im = await import('./src/data/imgs.js');
-      this.idx = { belgrano: im.IMGS.b.map((f) => ({ f: 'src/img/b/' + f, t: new Set(toks(f)) })), caballito: im.IMGS.c.map((f) => ({ f: 'src/img/c/' + f, t: new Set(toks(f)) })) };
+      const im = await import('/data/imgs.js');
+      this.idx = { belgrano: im.IMGS.b.map((f) => ({ f: '/img/b/' + f, t: new Set(toks(f)) })), caballito: im.IMGS.c.map((f) => ({ f: '/img/c/' + f, t: new Set(toks(f)) })) };
       this.setState({ data: { belgrano: b.buildMenu(be.belgrano), caballito: b.buildMenu(ca.caballito) } });
     } catch (e) { console.error(e); }
   }
@@ -578,16 +578,16 @@ class Component extends DCLogic {
         { key: 'Promociones', title: 'Lunes de pastas y sábados de Negroni', body: 'Lunes de pastas al 50% de descuento en la sucursal Belgrano R, y happy hour en Negroni y Gin & Tonic los sábados hasta las 20:00.' },
       ].map((p, i) => ({ ...p, icon: HERO_ICON[p.key], delay: i * 0.08 + 's' })),
       ofrezcas: [
-        { title: 'Coctelería de Autor & Clásicos', img: 'src/img/tragos-b1.jpg', body: 'Desde un Negroni perfecto hasta una imponente selección de Whiskies y Single Malts premium para los verdaderos amantes del buen beber.' },
-        { title: 'Cerveza Tirada', img: 'src/img/alcohol-b1.jpg', body: 'Las mejores variedades artesanales e internacionales servidas siempre en su punto justo.' },
-        { title: 'Cocina de Verdad', img: 'src/img/c/milanesa-the-oldest.jpeg', body: 'Platos abundantes, hamburguesas caseras épicas, las mejores picadas de la ciudad y nuestras famosas pastas que te hacen sentir como en casa.' },
+        { title: 'Coctelería de Autor & Clásicos', img: '/img/tragos-b1.jpg', body: 'Desde un Negroni perfecto hasta una imponente selección de Whiskies y Single Malts premium para los verdaderos amantes del buen beber.' },
+        { title: 'Cerveza Tirada', img: '/img/alcohol-b1.jpg', body: 'Las mejores variedades artesanales e internacionales servidas siempre en su punto justo.' },
+        { title: 'Cocina de Verdad', img: '/img/c/milanesa-the-oldest.jpeg', body: 'Platos abundantes, hamburguesas caseras épicas, las mejores picadas de la ciudad y nuestras famosas pastas que te hacen sentir como en casa.' },
       ].map((p, i) => ({ ...p, delay: i * 0.1 + 's' })),
       testimonios: [
         { quote: 'Los mejores champignones rellenos de Buenos Aires y una atención que te hace sentir un habitué desde la primera noche. Un clásico que nunca falla.', who: 'Martín G.' },
         { quote: 'La barra de madera, la música de Los Beatles de fondo y la variedad de whiskies es de otro planeta. Ir a The Oldest es un viaje de ida.', who: 'Laura S.' },
       ],
       cards: [], b: { envio: {} }, hasEj: false, ej: {}, ejPrecios: [], ejDias: [], ejSel: { entradas: [] }, ejWa: '',
-      bHero: 'src/img/hero-cartas.jpg', bMos1: '', bMos2: '', bMarquee: [], promos: [], favs: [], catCards: [], sched: [], apps: [], avisos: [], catCount: 0,
+      bHero: '/img/hero-cartas.jpg', bMos1: '', bMos2: '', bMarquee: [], promos: [], favs: [], catCards: [], sched: [], apps: [], avisos: [], catCount: 0,
       bOpen: '', bDot: '#78aa5a', bWa: '#', bMaps: '#', bCarta: () => {}, bBack: () => {},
       q: S.q, onQ: () => {}, clearQ: () => {}, catPills: [], tagPills: [], groups: [], resultCount: 0, noResults: false,
     };
@@ -599,7 +599,7 @@ class Component extends DCLogic {
         id, nombre: b.nombre, lema: b.lema, direccion: b.direccion, telefono: b.telefono, whatsapp: b.whatsapp,
         horarioTexto: b.horarioTexto, total: b.totalItems, openLabel: o.label, dot: o.dot,
         waHref: wa(b.whatsapp, b.whatsappTexto), mapsHref: maps(b.maps),
-        photo: id === 'belgrano' ? 'src/img/b/hamburguesa-fat-cat.jpg' : 'src/img/c/hamburguesa-harlem.jpeg',
+        photo: id === 'belgrano' ? '/img/b/hamburguesa-fat-cat.jpg' : '/img/c/hamburguesa-harlem.jpeg',
         go: () => this.go('branch', id), goCarta: () => this.go('carta', id),
         cats: b.categorias.map((c) => ({ name: c.name, count: c.total, go: () => this.go('carta', id, { cat: c.id }) })),
       };
@@ -612,13 +612,13 @@ class Component extends DCLogic {
       bMarquee: [b.horarioTexto, b.totalItems + ' platos y tragos', ...b.categorias.map((c) => c.name), b.horarioTexto, b.totalItems + ' platos y tragos', ...b.categorias.map((c) => c.name)],
       promos: b.promos.map((p) => ({ ...p, border: p.destacado ? '#B87333' : 'rgba(217,198,168,.14)', bg: p.destacado ? 'linear-gradient(160deg,#3a2415,#2c1d14)' : '#2c1d14' })),
       catCount: b.categorias.length, avisos: b.avisos || [],
-      apps: b.envio.apps.map((a) => ({ name: a, iconStyle: 'flex:none;width:24px;height:24px;border-radius:50%;background:#3b281c url(' + (/rappi/i.test(a) ? 'src/img/rappi.jpg' : 'src/img/pedidosya.jpg') + ') center/cover' })),
-      bHero: b.id === 'belgrano' ? 'src/img/tragos-b1.jpg' : 'src/img/c/hamburguesa-manhattan.jpeg',
-      bMos1: b.id === 'belgrano' ? 'src/img/b/hamburguesa-fat-cat.jpg' : 'src/img/c/hamburguesa-fat-cat.jpeg',
-      bMos2: b.id === 'belgrano' ? 'src/img/tragos-b2.jpg' : 'src/img/tragos-c1.jpg',
+      apps: b.envio.apps.map((a) => ({ name: a, iconStyle: 'flex:none;width:24px;height:24px;border-radius:50%;background:#3b281c url(' + (/rappi/i.test(a) ? '/img/rappi.jpg' : '/img/pedidosya.jpg') + ') center/cover' })),
+      bHero: b.id === 'belgrano' ? '/img/tragos-b1.jpg' : '/img/c/hamburguesa-manhattan.jpeg',
+      bMos1: b.id === 'belgrano' ? '/img/b/hamburguesa-fat-cat.jpg' : '/img/c/hamburguesa-fat-cat.jpeg',
+      bMos2: b.id === 'belgrano' ? '/img/tragos-b2.jpg' : '/img/tragos-c1.jpg',
       catCards: b.categorias.map((c) => {
-        let img = 'src/img/hero-cartas.jpg';
-        for (const g of c.groups) { for (const it of g.items) { const f = this.idx && findImg(this.idx[b.id], it.name); if (f) { img = f; break; } } if (img !== 'src/img/hero-cartas.jpg') break; }
+        let img = '/img/hero-cartas.jpg';
+        for (const g of c.groups) { for (const it of g.items) { const f = this.idx && findImg(this.idx[b.id], it.name); if (f) { img = f; break; } } if (img !== '/img/hero-cartas.jpg') break; }
         return { name: c.name, blurb: c.blurb || '', total: c.total, img, go: () => this.go('carta', b.id, { cat: c.id }) };
       }),
       sched: [1, 2, 3, 4, 5, 6, 0].map((d) => {
