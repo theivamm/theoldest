@@ -1,0 +1,1152 @@
+/* ============================================================================
+   CABALLITO — Juan B. Ambrosetti 31
+   Transcripcion de caballito/*.md.  Claves: n nombre · d descripcion · p precio
+   o opciones · f favorito · t tags extra · k tipo de ilustracion
+   ========================================================================== */
+
+export const caballito = {
+  id: 'caballito',
+  nombre: 'Caballito',
+  barrio: 'Caballito',
+  lema: 'El salon del barrio',
+  direccion: 'Juan B. Ambrosetti 31',
+  barrioFull: 'Caballito, Buenos Aires',
+  telefono: '11 4793-0550',
+  whatsapp: '11 4793-0550',
+  whatsappTexto: 'Hola The Oldest! Quiero hacer un pedido en Caballito.',
+  maps: 'Juan B. Ambrosetti 31, Buenos Aires',
+
+  horarios: {
+    0: [16 * 60, 2 * 60],
+    1: [16 * 60, 2 * 60],
+    2: [16 * 60, 2 * 60],
+    3: [16 * 60, 2 * 60],
+    4: [16 * 60, 2 * 60],
+    5: [16 * 60, 4 * 60],
+    6: [16 * 60, 4 * 60],
+  },
+  horarioTexto: 'Domingos a Jueves de 16:00 a 2:00 hs · Viernes y Sabados de 16:00 a 4:00 hs',
+
+  envio: {
+    titulo: 'Hace tu pedido por Rappi y PedidosYa',
+    detalle: 'Todos los dias de 17 hs a 24 hs',
+    apps: ['Rappi', 'PedidosYa'],
+  },
+
+  promos: [
+    {
+      titulo: 'Negroni a mitad de precio',
+      detalle: 'Todos los dias, de 16 a 20 hs.',
+      cuando: '16 a 20 hs',
+      destacado: true,
+    },
+    {
+      titulo: 'Happy Hour 2x1 en pintas Quilmes',
+      detalle: 'Todos los dias hasta las 20 hs.',
+      cuando: 'Hasta las 20 hs',
+      destacado: true,
+    },
+    {
+      titulo: 'Gin Tonic artesanal 50% OFF',
+      detalle:
+        'Tirado, de 16 a 20 hs. Elegi tu estilo: maracuya y cardamomo, lima, frutos rojos, pepino y miel, pomelo y canela.',
+      cuando: '16 a 20 hs',
+      destacado: true,
+    },
+    {
+      titulo: 'Take away 10% off',
+      detalle: 'No incluye cafeteria ni bebidas.',
+      cuando: 'Todos los dias',
+    },
+  ],
+
+  avisos: [
+    'Los precios son en pesos argentinos y pueden variar sin aviso.',
+    'Opciones sin gluten disponibles a pedido, con @gula.glutenfree.',
+  ],
+
+  /* ------------------------------------------------------------- carta */
+  categorias: [
+    /* ------------------------------------------------ cafeteria */
+    {
+      id: 'cafeteria',
+      nombre: 'Cafeteria y Meriendas',
+      glosa: 'Cafe de especialidad, pasteleria y combos con exprimido.',
+      tipo: 'comida',
+      grupos: [
+        {
+          nombre: 'Cafeteria',
+          items: [
+            { n: 'Cafe expresso o Jarrito', p: 5000 },
+            { n: 'Cafe expresso descafeinado', p: 6000 },
+            { n: 'Cortado Jarrito', p: 5000 },
+            { n: 'Lagrima Jarrito', p: 5000 },
+            { n: 'Lagrima doble', p: 7000 },
+            { n: 'Cafe doble', p: 7000 },
+            { n: 'Tazon de Cafe con Leche', p: 8000 },
+            { n: 'Cafe con leche almendras', p: 9000 },
+            { n: 'Machiato', d: 'Expresso simple con espuma de leche', p: 5000 },
+            { n: 'Ristretto', d: 'Mitad de un expresso', p: 5000 },
+            { n: 'Uruguayo', d: 'Mitad de expresso y mitad de leche en vaso', p: 5000 },
+            { n: 'Latte', d: 'Expresso simple con leche espumada', p: 6000 },
+            { n: 'Tazon Latte', d: 'Expresso doble con leche espumada', p: 7000 },
+            { n: 'Flat white', d: 'Expresso doble y leche espumada', p: 7000 },
+            {
+              n: 'Capuccino Italiano',
+              d: 'Expresso simple, leche, crema, canela y chocolate rallado',
+              p: 8000,
+            },
+            { n: 'Capuccino', d: 'Canela o chocolate rallado', p: 7000 },
+            {
+              n: 'Mokaccino Almendrado',
+              d: 'Expresso doble, chocolate liquido, leche de almendras, crema y chocolate rallado',
+              p: 8000,
+            },
+            {
+              n: 'Caramel macchiato',
+              d: 'Doble expresso, espuma de leche, crema y caramelo liquido',
+              p: 8000,
+            },
+            { n: 'Vanilla latte', d: 'Doble expresso, leche y salsa de vainilla', p: 7000 },
+            { n: 'Avellana latte', d: 'Doble expresso, leche y salsa de avellana', p: 7000 },
+            {
+              n: 'Frapuccino',
+              d: 'Doble expresso con hielo, leche emulsionada, crema y chocolate rallado',
+              p: 8000,
+              o: 'Salsas: vainilla, caramelo, avellanas, o sin salsa',
+            },
+            {
+              n: 'Affogato',
+              d: 'Expresso simple, nueces picadas, caramelo y helado de americana',
+              p: 8000,
+            },
+            {
+              n: 'Vienes',
+              d: 'Doble expresso, helado de crema americana, crema de leche y chocolate rallado',
+              p: 8000,
+            },
+            { n: 'Sottomarino', d: 'Doble barrita de chocolate y leche', p: 7000 },
+            {
+              n: 'Irish',
+              d: 'Whisky, doble expresso, crema, canela, espuma de leche',
+              p: 10000,
+            },
+            {
+              n: 'Cubano',
+              d: 'Ron, doble expresso, crema, chocolate rallado, espuma de leche',
+              p: 10000,
+            },
+            {
+              n: 'Baileys',
+              d: 'Baileys, doble expresso, crema, chocolate rallado y espuma de leche',
+              p: 10000,
+            },
+            {
+              n: 'Cafe Mokka',
+              d: 'Salsa de chocolate, jarabe de avellanas, leche espumosa y cafe',
+              p: 10000,
+            },
+            { n: 'Te clasico', p: 5000 },
+            { n: 'Te INTI ZEN', p: 6000, f: true },
+          ],
+        },
+        {
+          nombre: 'Pasteleria',
+          items: [
+            { n: 'Medialuna de Manteca', p: 3000, f: true },
+            { n: 'Medialuna con jamon y queso', p: 5000 },
+            { n: 'Muffin de chocolate con chips', p: 6000 },
+            { n: 'Rol de Canela', p: 7000 },
+            { n: 'Alfajor', d: 'Dulce de leche y merengue', p: 4000 },
+            { n: 'Alfajor de almendras', p: 8000 },
+            { n: 'Brownie con nuez', p: 8000 },
+            { n: 'Carrot cake', d: 'Budin dulce de zanahorias', p: 7000 },
+            { n: 'Budin de banana y nuez', p: 7000 },
+            { n: 'Chocotorta de la abuela', p: 11000, f: true },
+            { n: 'Brooklyn cheesecake', p: 11000 },
+            { n: 'Brownie con Americana', p: 11000 },
+            { n: 'Apple pie con helado de americana', p: 16000 },
+            {
+              n: 'Cheesecake Frutos rojos',
+              d: 'Base de galleta dulce, relleno de queso Mascarpone y Philadelphia. Apto para celiacos.',
+              p: 11000,
+              t: ['sin-tacc'],
+            },
+            {
+              n: 'Cookie Nutella y Chips',
+              d: 'Sabor vainilla rellena de nutella y chips de chocolate. Apto para celiacos.',
+              p: 6000,
+              t: ['sin-tacc'],
+            },
+            {
+              n: 'Cookie Oreo',
+              d: 'Sabor vainilla rellena de oreo y chips de chocolate blanco. Apto para celiacos.',
+              p: 6000,
+              t: ['sin-tacc'],
+            },
+            {
+              n: 'Cookie Red Velvet',
+              d: 'Sabor vainilla y cacao con chips de chocolate blanco, rellena de ganache de creamcheese. Apto para celiacos.',
+              p: 6000,
+              t: ['sin-tacc'],
+            },
+          ],
+        },
+        {
+          nombre: 'Combos Meriendas',
+          nota: 'Incluye una infusion (capuccino, cortado, cafe, cafe con leche o te) y un vasito de exprimido de naranja.',
+          items: [
+            { n: 'Clasico', d: 'Con dos medialunas de manteca', p: 10000 },
+            { n: 'Dos tostadas', d: 'Con mermelada y queso crema', p: 12000 },
+            {
+              n: 'Nuestra Granola',
+              d: 'Bowl de yogurt griego con granola, frutillas, banana y arandanos. Con miel aparte.',
+              p: 14000,
+              t: ['nuevo'],
+            },
+            { n: 'Duo Petite Croissant', d: 'Dos medialunas tostadas con jamon y queso', p: 13000 },
+            { n: 'Merienda Tostado', d: 'Medio tostado de miga de jamon y queso', p: 14000 },
+            {
+              n: 'Avocado Toast merienda',
+              d: 'Pan integral, guacamole, huevos revueltos, tomate y semillas de sesamo',
+              p: 13000,
+            },
+            {
+              n: 'Tostada americana',
+              d: 'Huevos revueltos, salchichas, panceta y queso',
+              p: 13000,
+            },
+            {
+              n: 'Salmon ahumado Merienda',
+              d: 'Sobre pan de campo con guacamole y huevo poche',
+              p: 20000,
+            },
+            {
+              n: 'Combo Merienda para 2 personas',
+              d: 'Dos medialunas de manteca, un muffin de chocolate con chips, dos triangulos de miga y porcion de budin a eleccion (Carrot Cake o Banana). Incluye dos infusiones y dos vasitos de exprimido de naranja.',
+              p: 22000,
+            },
+          ],
+        },
+      ],
+    },
+
+    /* ------------------------------------------------ comidas */
+    {
+      id: 'comidas',
+      nombre: 'Comidas',
+      glosa: 'Picas, entradas, ensaladas, sandwiches y hamburguesas de la casa.',
+      tipo: 'comida',
+      grupos: [
+        {
+          nombre: 'Para Picar',
+          items: [
+            {
+              n: 'Milanesas de Muzzarella en Dados',
+              d: 'Con dip de salsa de fileto o barbacoa',
+              p: 15000,
+            },
+            { n: 'Papas Fritas', p: 12000, f: true },
+            { n: 'Papas Fritas con Cheddar, Panceta y Verdeo', p: 16000 },
+            { n: 'Papas Fritas a caballo', d: 'Dos huevos fritos', p: 16000 },
+            {
+              n: 'Papas Fritas Bolognesas',
+              d: 'Con bolognesa, cheddar, panceta, queso dambo y verdeo',
+              p: 17000,
+            },
+            { n: 'Rabas 250gr', p: 25000 },
+            { n: 'Aros de cebolla', p: 16000 },
+            {
+              n: 'Nachos Calientes',
+              d: 'Cheddar, fileto, pico de gallo, queso dambo, verdeo y queso crema',
+              p: 18000,
+            },
+            { n: 'Nachos', d: 'Cheddar y guacamole', p: 16000 },
+            {
+              n: 'Duo de Milangas',
+              d: 'De pollo y carne en cortes con dip de barbacoa',
+              p: 22000,
+            },
+            {
+              n: 'Chicken Fingers',
+              d: 'Con papas fritas y dip de filetto picante',
+              p: 21000,
+            },
+            {
+              n: 'Provoleta de la Barra',
+              d: 'Con jamon cocido, morrones asados y fileto',
+              p: 20000,
+              f: true,
+            },
+            { n: 'Provoleta', d: 'Tomates secos y oregano', p: 17000 },
+            {
+              n: 'Milanesa Napolitana',
+              d: 'Opcional ternera o pollo. Con papas fritas',
+              p: 23000,
+            },
+            {
+              n: 'Tortilla la Campeona',
+              d: 'Cocida con papa, cebolla, morron, verdeo, huevo y condimento',
+              p: 20000,
+            },
+            {
+              n: 'Milanesa The Oldest',
+              d: 'Opcional ternera o pollo, para compartir, con filetto, jamon, muzzarela, huevos fritos y papas fritas con cheddar, panceta y verdeo',
+              p: 34000,
+              f: true,
+            },
+            {
+              n: 'Picada de la Banda de los Lunes',
+              d: 'Dados de muzzarella apanados, tortilla de papas, salchichas, aceitunas mixtas, rabas, finger chicken, albondigas, jamon crudo, queso pategras, longaniza, dips de cheddar y filetto y papas con cheddar y panceta',
+              d2: '4 personas',
+              p: 80000,
+              f: true,
+            },
+            {
+              n: 'Media Picada de la Banda de los Lunes',
+              d: 'Dados de muzzarella apanados, tortilla de papas, salchichas, aceitunas mixtas, rabas, finger chicken, albondigas, jamon crudo, queso pategras, longaniza, dips de cheddar y filetto y papas con cheddar y panceta',
+              d2: '2 personas',
+              p: 62000,
+            },
+            {
+              n: 'Tabla Individual',
+              d: 'Feta de jamon crudo, jamon cocido, mortadela, aceitunas verdes, nueces, queso pategras, queso muzarella, queso dambo y rebanada de pan',
+              p: 28000,
+            },
+            {
+              n: 'Tabla Duo',
+              d: 'Dos fetas de jamon crudo, jamon cocido, mortadela, aceitunas verdes, nueces, queso pategras, queso muzarella, queso dambo y dos rebanadas de pan',
+              p: null,
+            },
+          ],
+        },
+        {
+          nombre: 'Sin Tacc',
+          nota: 'Opciones sin gluten. Precio del grupo: $ 45.000.',
+          items: [
+            { n: 'Empanadas', d: 'Carne, jamon y queso y verdura', p: 8000, t: ['sin-tacc'] },
+            {
+              n: 'Papas fritas',
+              d: 'Adicional cheddar $ 4.000',
+              p: 13000,
+              t: ['sin-tacc'],
+            },
+          ],
+        },
+        {
+          nombre: 'Pizzas Individuales',
+          items: [{ n: 'Muzzarella', p: 25000, k: 'pizza' }],
+        },
+        {
+          nombre: 'Entradas',
+          items: [
+            { n: 'Geishas de Salmon Ahumado', d: 'Con guacamole sobre limas', p: 28000, f: true },
+            {
+              n: 'Pinchos de Langostinos Crocantes',
+              d: 'Con papas y salsa de fileto chilli y mayonesa de ajo',
+              p: 28000,
+            },
+            { n: 'Burrata Pitti', d: 'Media burrata con jamon crudo, albahaca y tomates secos', p: 26000 },
+            {
+              n: 'Burrata Oldest',
+              d: 'Una burrata entera con jamon crudo, mortadela con pistachos, pesto y tomates secos',
+              p: 30000,
+            },
+            {
+              n: 'Toston de Salmon Ahumado',
+              d: 'En pan de campo tostado, guacamole y huevos revueltos',
+              p: 28000,
+            },
+          ],
+        },
+        {
+          nombre: 'Ensaladas',
+          items: [
+            {
+              n: 'Caesar de Pollo',
+              d: 'Lechuga, crotones, parmesano, aderezo caesar. La opcion de pollo corresponde a la pechuga',
+              p: 23000,
+            },
+            { n: 'Caesar de Langostinos', d: 'Lechuga, crotones, parmesano y aderezo caesar', p: 28000 },
+            {
+              n: 'Verde',
+              d: 'Rucula, lechuga, apio, nueces, espinacas y muzzarella apanada',
+              p: 22000,
+            },
+            {
+              n: 'Sebastian',
+              d: 'Rolls de salmon ahumado con chessecream y palta, sobre verde, crotones y sesamo tostado',
+              p: 28000,
+            },
+            {
+              n: 'Ensalada The Oldest',
+              d: 'Pollo apanado con cereales y sesamo, hojas verdes, tomate, huevo duro y panceta crocante',
+              p: 25000,
+            },
+          ],
+        },
+        {
+          nombre: 'Wraps y Sandwiches',
+          items: [
+            {
+              n: 'Wrap de Pollo y Fritas',
+              d: 'Pechuga, verde, cebolla morada, cheddar, panceta y honey mustard',
+              p: 24000,
+            },
+            { n: 'Tostado de Jamon y Queso', d: 'Cuatro triangulos en pan de miga', p: 18000 },
+            { n: 'Tostado de Jamon y Queso en pan arabe', p: 18000 },
+            { n: 'Tostado en Pan de Chipa', d: 'Jamon, queso y papas', p: 20000 },
+            { n: 'Tostado de Jamon Crudo y Queso en pan arabe', p: 20000 },
+            { n: 'Medio tostado de jamon y queso', d: 'Dos triangulos en pan de miga', p: 12000 },
+            {
+              n: 'Tostado Veggie',
+              d: 'Queso dambo, aceitunas negras, albahaca, oregano y tomates en pan arabe',
+              p: 18000,
+            },
+            { n: 'Tostado The Oldest', d: 'Jamon, queso y tomate en pan arabe con fritas', p: 20000 },
+            { n: 'Tostadas americanas', d: 'Huevos revueltos, salchichas, panceta y queso', p: 18000 },
+            {
+              n: 'Omelette a gusto',
+              o: 'Jamon y queso · cuatro quesos · espinaca, cebolla y queso',
+              p: 20000,
+            },
+            {
+              n: 'Crepes a gusto',
+              d: 'Panqueques de masa dulce con parmesano y filetto',
+              o: 'Jamon y muzarella · Caprese: tomate, albahaca, queso · Vegetariano: palta, tomate, cebolla, huevo',
+              p: 20000,
+            },
+            {
+              n: 'Sandwich California',
+              d: 'Jamon crudo, mozzarella, rucula, tomates secos y aceitunas negras en pan ciabatta',
+              p: 22000,
+            },
+            {
+              n: 'Sandwich Vegetarian Portobello',
+              d: 'Cake de portobello relleno de cheddar, tomate, rucula y guacamole en pan de remolacha',
+              p: 20000,
+              t: ['veggie'],
+            },
+            {
+              n: 'Sandwich Tweety',
+              d: 'Pollo pechuga, tomate, queso, panceta, rucula en ciabatta con papas fritas',
+              p: 24000,
+            },
+            {
+              n: 'Avocado toast',
+              d: 'Pan integral, guacamole, huevos revueltos, tomate y semillas de sesamo',
+              p: 20000,
+            },
+            {
+              n: 'Sandwich Nordigo',
+              d: 'Salmon ahumado, rucula, queso crema y ciboulette con dip de guacamole en pan de remolacha',
+              p: 28000,
+            },
+            {
+              n: 'Sandwich de Milanesa Completo',
+              d: 'Milanesa de nalga, jamon, queso, tomate, huevo a la plancha, lechuga y papas en pan ciabatta',
+              p: 24000,
+            },
+            {
+              n: 'Sandwich Lomo Completo',
+              d: '250gr de Lomo, jamon, queso, tomate, lechuga, huevo a la plancha y papas fritas',
+              p: 32000,
+              f: true,
+            },
+            { n: 'Sandwich Lomo Clasico', d: '340gr de Lomo y pan', p: 30000 },
+          ],
+        },
+        {
+          nombre: 'Hamburguesas Gourmet',
+          nota: 'Pan de papa. Medallon vegano "Not Co" +$ 4.000. Otros adicionales +$ 4.000.',
+          items: [
+            {
+              n: 'Fat Cat',
+              d: 'Cebolla caramelizada, blue cheese, rucula, honey mustard, aros de cebolla',
+              p: 24000,
+              f: true,
+            },
+            {
+              n: 'Manhattan',
+              d: 'Tomate, lechuga, medallon de carne, cake de portobello con cheddar, aderezo caesar, papas fritas',
+              p: 30000,
+            },
+            {
+              n: 'Tijuana',
+              d: 'Guacamole, tomate, cebolla colorada, salsa jalapena, nachos con cheddar',
+              p: 24000,
+            },
+            {
+              n: 'Harlem',
+              d: 'De bondiola de cerdo, cebolla caramelizada, panceta, cheddar, tomate, huevo a la plancha, barbacoa y aros de cebolla',
+              p: 24000,
+            },
+            {
+              n: 'Completa',
+              d: 'Jamon, queso, tomate, lechuga, huevo a la plancha y papas fritas',
+              p: 24000,
+            },
+            {
+              n: 'Maraca Burger',
+              d: 'Provoleta grillada con hamburguesa de carne y oregano, cebollas caramelizadas, pimientos asados y papas fritas con pesto',
+              p: 25000,
+            },
+            {
+              n: 'Tachame la Doble (400g)',
+              d: 'Doble hamburguesa, doble queso cheddar, doble queso dambo, lechuga, tomate y mayonesa de ajos confitados con papas, huevo frito y verdeo',
+              p: 30000,
+            },
+            { n: 'Cheeseburger', d: 'La clasica y famosa: pan, carne y queso, con papas fritas', p: 20000 },
+            { n: 'Doble Cheeseburger', d: 'La clasica y famosa: pan, carne y queso, con papas fritas', p: 25000 },
+            {
+              n: 'Vegan Burger',
+              d: 'Burger de berenjenas ahumadas, quinoa, verdeo y puerros con tomate, cebollas doradas, rucula y papas fritas en pan de remolacha',
+              p: 25000,
+            },
+          ],
+        },
+      ],
+    },
+
+    /* ------------------------------------------------ tragos */
+    {
+      id: 'tragos',
+      nombre: 'Tragos y Jarras',
+      glosa: 'Los clasicos que nunca faltan y los de autor que quedan de paso.',
+      tipo: 'bebida',
+      grupos: [
+        {
+          nombre: 'Jarras',
+          items: [
+            { n: 'Mojito maracuya', d: 'Ron, almibar de jengibre, menta, maracuya, naranja y soda', p: 22000, k: 'jarra' },
+            { n: 'Mojito', d: 'Ron, almibar de jengibre, menta, lima y soda', p: 22000, k: 'jarra' },
+            { n: 'Vermut Rosso', d: 'Vermut Rosso, naranja, pomelo, soda', p: 22000, k: 'jarra' },
+            { n: 'Clerico', d: 'Frutas de estacion, vino blanco y azucar', p: 30000, k: 'jarra' },
+            { n: 'Tinto de verano', d: 'Vino tinto, sprite, rodajas de naranja y limon', p: 22000, k: 'jarra' },
+          ],
+        },
+        {
+          nombre: 'The Best Sellers',
+          items: [
+            { n: 'Gin Tonic Perfecto', d: 'Gin, tonica, pepino y bitter angostura', p: 12000, f: true },
+            {
+              n: 'Gin Tonic',
+              d: 'Fruta a eleccion',
+              o: 'Pomelo · Frutos rojos · Lima · Limon · Pepino · Naranja · Maracuya',
+              p: 11000,
+            },
+            { n: 'Cuba Libre', d: 'Coca, lima y ron', p: 11000 },
+            { n: 'Campari Orange', p: 11000 },
+            { n: 'Fernetcola Branca', p: 11000 },
+            { n: 'Whiscola', p: 11000 },
+            { n: 'Malibu con naranja', p: 11000 },
+            { n: 'Vodka con naranja', p: 11000 },
+            { n: 'Gancia batido', p: 11000 },
+            { n: 'Cynar Pomelo', p: 11000 },
+            { n: 'Negroni', d: 'Gin, Campari, Martini Rosso', p: 12000, f: true },
+            { n: 'Boulevardier', d: 'Bourbon, Campari, Martini Rosso', p: 13000 },
+            { n: 'Old Fashioned', d: 'Bourbon, naranja, angostura, azucar', p: 13000 },
+            { n: 'Cynar Julep', d: 'Cynar, azucar negro, pomelo rosado, menta', p: 12000 },
+            { n: 'Mojito', d: 'Ron, jugo de lima, almibar, menta, soda', p: 12000 },
+            { n: 'Margarita Clasico', d: 'Tequila, jugo lima, triple sec', p: 12000 },
+            { n: 'Caipis', d: 'Con cachaca, vodka o ron con lima y azucar', p: 12000 },
+            { n: 'Irish Dream', d: 'Baileys, tia maria, crema americana', p: 14000 },
+            { n: 'Daiquiri frozen', d: 'Fruta a eleccion con ron y azucar', p: 13000 },
+            { n: 'Aperol Spritz', d: 'Aperol, champagne, naranja, soda', p: 12000 },
+            { n: 'White Russian', d: 'Tia maria, vodka, crema de leche', p: 11000 },
+            { n: 'Tom Collins', d: 'Gin, limon, almibar, soda, bitter angostura', p: 12000 },
+            {
+              n: 'Bloody Mary',
+              d: 'Jugo de tomate, vodka, tabasco, salsa inglesa, lima, sal y pimienta',
+              p: 11000,
+            },
+            { n: 'Piscola', p: 11000 },
+            { n: 'Gancia con sprite', p: 11000 },
+          ],
+        },
+        {
+          nombre: 'Gin Tonics Importados',
+          items: [
+            { n: 'Beefeter', p: 15000, f: true },
+            { n: 'Tanqueray', p: 14000 },
+            { n: 'Bombay', p: 16000 },
+            { n: 'Hendricks', p: 23000 },
+            { n: 'Brokers', p: 17000 },
+          ],
+        },
+        {
+          nombre: 'Cocteles',
+          items: [
+            { n: 'Cosmopolitan', d: 'Vodka, cranberry, cointreau', p: 13000 },
+            { n: 'Apple Blossom', d: 'Cognac, manzana, lima, azucar', p: 12000 },
+            { n: 'Cosmopolitan con triple sec', d: 'Vodka, cranberry, triple sec', p: 11000 },
+            { n: 'Apple Martini', d: 'Vodka, licor de manzana verde, lima, manzana verde', p: 11000 },
+            { n: 'Martini Dry', d: 'Gin, martini seco, aceituna verde', p: 11000 },
+            { n: 'Expresso martini', d: 'Vodka, cafe, tia maria, almibar', p: 11000 },
+            { n: 'Manhatan', d: 'Bourbon, martini rosso, bitter angostura', p: 12000 },
+            {
+              n: 'Gringuito Blanco',
+              d: 'Bourbon, fuerza blanco, bitter de chocolate y tia maria',
+              p: 12000,
+            },
+            {
+              n: 'Red Margarita',
+              d: 'Tequila, triple sec, jugo lima, azucar, jugo de arandanos',
+              p: 12000,
+            },
+            { n: 'Sidecar', d: 'Triple sec, cognac, limon', p: 11000 },
+          ],
+        },
+        {
+          nombre: 'Mezclas',
+          items: [
+            { n: 'Red Bull con Absolut', p: 16000 },
+            { n: 'Speed con Absolut', p: 14000 },
+            { n: 'Red Bull con Vodka', p: 14000 },
+            { n: 'Speed con Vodka', p: 12000 },
+            { n: 'Jagger Bomb', p: 17000 },
+            { n: 'Jagger Bomb con speed', p: 15000 },
+            { n: 'Jagger Bomb (Damonjag)', p: 13000 },
+            { n: 'Perfecto Rey', d: 'Gin, pepino, miel, rosso', p: 12000 },
+            {
+              n: 'Long Island ice tea',
+              d: 'Ron, vodka, gin, tequila, triple sec, jugo lima, bebida cola',
+              p: 12000,
+            },
+            {
+              n: 'Sex on the Beach',
+              d: 'Vodka, licor de durazno, jugo de naranja, granadina',
+              p: 11000,
+            },
+            {
+              n: 'Rojo de verano',
+              d: 'La Fuerza rojo, jugo de limon, almibar de jengibre, menta y soda',
+              p: 12000,
+            },
+            { n: 'Supertonico', d: 'La Fuerza rojo, gin, tonica, romero', p: 12000 },
+            {
+              n: 'Pasion de verano',
+              d: 'La Fuerza Primavera en los Andes, almibar de frutilla, champagne',
+              p: 12000,
+            },
+            { n: 'Buenos Aires Tonic', d: 'La Fuerza Blanco, gin, tonica, tomillo', p: 12000 },
+            {
+              n: 'Fuerza Verde',
+              d: 'La Fuerza Blanco, gin, almibar de yerba mate, limon, soda',
+              p: 12000,
+            },
+            {
+              n: 'Primavera Spritz',
+              d: 'La Fuerza Primavera de los Andes, espumante, soda',
+              p: 12000,
+            },
+            { n: 'Tinto de verano', d: 'Vino tinto, sprite, rodajas de naranja y limon', p: 11000 },
+          ],
+        },
+        {
+          nombre: 'Caipis',
+          items: [
+            { n: 'Caipiranja', d: 'Absolut Mandarin, vodka, lima, naranja, azucar', p: 14000 },
+            { n: 'Sweet Bamboo', d: 'Frutillas, vodka, pepino, lima, azucar', p: 13000 },
+            {
+              n: 'Mai Tai',
+              d: 'Anana, naranja, amaretto, ron dorado, ron blanco, azucar',
+              p: 13000,
+            },
+            { n: 'Caipiscotch', d: 'Whisky, azucar, lima', p: 13000 },
+            { n: 'Caipiruya', d: 'Ron, azucar, lima, maracuya', p: 12000 },
+            { n: 'Caipeach', d: 'Pomelo, almibar de jenjibre, absolut apeach', p: 13000 },
+            { n: 'Caipijagger', d: 'Jagger, lima, azucar', p: 15000 },
+            { n: 'Caipidamonjag', d: 'Damonjag (simil Jagger), lima, azucar', p: 13000 },
+          ],
+        },
+        {
+          nombre: 'Frozen',
+          items: [
+            { n: 'Sex Machine', d: 'Vodka, frutillas, jugo naranja', p: 13000 },
+            { n: 'Maracuya Frozen', d: 'Ron, maracuya, crema americana', p: 13000 },
+            {
+              n: 'Baileys Split',
+              d: 'Ron, Baileys, banana, crema de leche, dulce de leche',
+              p: 15000,
+            },
+            { n: 'Estimulante siberiano', d: 'Melon, vodka, pomelo, azucar', p: 13000 },
+            { n: 'Margarita frozen', d: 'Tequila, lima, triple sec, azucar', p: 13000 },
+            {
+              n: 'Mojito Frozen',
+              d: 'Ron, jugo de lima, azucar, menta fresca, rodaja de durazno',
+              p: 13000,
+            },
+            { n: 'Pina Colada', d: 'Anana, ron, malibu, crema de leche, azucar', p: 12000 },
+            { n: 'Daiquiri Oldest', d: 'Ron, durazno, frutillas, azucar', p: 15000 },
+            { n: 'Gancia frozen', d: 'Gancia, durazno, limon, azucar', p: 12000 },
+            { n: 'Gancia con helado de limon', d: 'Gancia, helado de limon, azucar', p: 12000 },
+          ],
+        },
+        {
+          nombre: 'Sours',
+          items: [
+            { n: 'Pisco Sour', d: 'Pisco, jugo de lima, azucar, clara de huevo', p: 12000 },
+            {
+              n: 'Pipita',
+              d: 'Bacardi infusionado en canela, jugo de lima, almibar, maracuya, clara de huevo',
+              p: 12000,
+            },
+          ],
+        },
+        {
+          nombre: 'Espumantes',
+          nota: 'Espumantes de cocteleria, listos en copa.',
+          items: [
+            {
+              n: 'Apeach Mojito',
+              d: 'Absolut apeach, jugo de lima, almibar de jengibre, hojas de menta, champagne',
+              p: 13000,
+            },
+            { n: 'Bellini', d: 'Durazno, azucar, champagne', p: 12000 },
+            { n: 'Pop', d: 'Helado de limon, blue curacao, champagne', p: 12000 },
+          ],
+        },
+        {
+          nombre: 'De autor',
+          items: [
+            {
+              n: 'White love',
+              d: 'Absolut vainilla, Amarulla, amaretto, licor de chocolate blanco, crema de leche',
+              p: 13000,
+            },
+            { n: 'Amore milano', d: 'Pomelo, lima, almibar, campari, bourbon', p: 13000 },
+            { n: 'Penicillin', d: 'Miel, jengibre, limon, whisky scotch', p: 13000, f: true },
+            { n: 'Kiwi soul', d: 'Kiwi, jengibre, vino torrontes', p: 13000 },
+            {
+              n: 'True blood',
+              d: 'Frutos rojos, lima, cynar, DamonJagg (simil jaggermeister), tonica',
+              p: 12000,
+            },
+            {
+              n: 'Micky vainilla',
+              d: 'Menta, lima, almibar, licor manzana, jugo manzana, absolut de vainilla',
+              p: 12000,
+            },
+            { n: 'Funky Apple', d: 'Manzana, lima, azucar, vodka, bourbon', p: 13000 },
+            { n: 'Boni tonic', d: 'Flores de ibiscus, rodajas de pomelo, gin, tonica', p: 12000 },
+            { n: 'Gara tonic', d: 'Gin, tonica, martini rosso, aperol, almibar', p: 11000 },
+            { n: 'Copi tonic', d: 'Piel de limon, anis estrellado, gin, tonica', p: 11000 },
+            { n: 'Argentonic', d: 'Miel, almibar de jengibre, gin, vino tinto y menta', p: 11000 },
+            {
+              n: 'Branca Mint Julep',
+              d: 'Branca Menta, almibar, exprimido de pomelo, cynar y menta',
+              p: 11000,
+            },
+          ],
+        },
+      ],
+    },
+
+    /* ------------------------------------------------ cerveza y bar */
+    {
+      id: 'bebidas-alcohol',
+      nombre: 'Cerveza y Bar',
+      glosa: 'Tirada, artesanal, latas y una garrafa bien parada.',
+      tipo: 'bebida',
+      grupos: [
+        {
+          nombre: 'Cerveza Artesanal Bossanfolk Tirada',
+          nota: 'Pinta.',
+          items: [
+            { n: 'Ipa', d: 'Ibu 72, alc 7%', p: 8000, k: 'jarra' },
+            { n: 'Scottish Ale', d: 'Ibu 22, alc 6%', p: 8000, k: 'jarra' },
+            { n: 'Porter', d: 'Ibu 25, alc 6%', p: 8000, k: 'jarra' },
+            { n: 'Blonde', d: 'Ibu 22, alc 5%', p: 8000, k: 'jarra' },
+            { n: 'Honey', d: 'Ibu 20, alc 7%', p: 8000, k: 'jarra' },
+          ],
+        },
+        {
+          nombre: 'Cerveza Tirada',
+          items: [
+            { n: 'Pinta Quilmes', p: 8000, k: 'jarra' },
+            { n: 'Media pinta Quilmes', p: 5000, k: 'jarra' },
+            {
+              n: 'Pinta Patagonia',
+              d: '24.7, Lager del Sur, Amber Lager y Vera Ipa',
+              p: 8000,
+              k: 'jarra',
+            },
+            { n: 'Media pinta Patagonia', p: 5000, k: 'jarra' },
+            { n: 'Stella Artois pinta', p: 8000, k: 'jarra' },
+            { n: 'Stella Artois media pinta', p: 5000, k: 'jarra' },
+          ],
+        },
+        {
+          nombre: 'Latas y Porrones',
+          items: [
+            { n: 'Stella artois Lata', d: '473 cl', p: 8000, k: 'lata' },
+            { n: 'Stella artois Porron', d: '330 cl', p: 7000, k: 'lata' },
+            {
+              n: 'Patagonia lata',
+              d: '473 cl. Amber lager, Weisse, Ipa 24,7, Bohemian y Lager del Sur',
+              p: 8000,
+              k: 'lata',
+            },
+            { n: 'Andes Lata', d: '473 cl. Roja, Rubia, Ipa, Negra, ipa roja, fresquita', p: 8000, k: 'lata' },
+            {
+              n: 'Quilmes lata',
+              d: '473 cl. Clasica, Red lager, Ipa, Stout, Doble malta',
+              p: 7000,
+              k: 'lata',
+            },
+            { n: 'Stella Artois Noire lata', p: 8000, k: 'lata' },
+            { n: 'Corona porron', d: '330 cl', p: 8000, k: 'lata' },
+            { n: 'Corona 710', d: '710 cl', p: 12000, k: 'lata' },
+            { n: 'Michelob Porron', d: 'Sin tacc, 275ml', p: 7000, k: 'lata', t: ['sin-tacc'] },
+            { n: 'Michelob Lata', d: 'Sin tacc, 473ml', p: 8000, k: 'lata', t: ['sin-tacc'] },
+          ],
+        },
+        {
+          nombre: 'Aperitivos y Vermuth',
+          items: [
+            { n: 'Antica formula', p: 28000, f: true },
+            { n: 'Fuerza', d: 'Blanco, rojo o primavera de los andes', p: 9000 },
+            { n: 'Carpano / Cinzano / Martini', d: 'Rosso, bianco o dry', p: 8000 },
+          ],
+        },
+        {
+          nombre: 'Bar',
+          nota: 'Medidas sin mezcla.',
+          items: [
+            { n: 'Tequila Jose Cuervo', p: 17000 },
+            { n: 'Tequila Sombrero negro', p: 11000 },
+            { n: 'Tequila Jose Cuervo 18 años', p: 34000 },
+            { n: 'Vodka Smirnoff', p: 7000 },
+            { n: 'Vodka Belvedere', p: 21000 },
+            { n: 'Vodka Finlandia', p: 19000 },
+            { n: 'Vodka Absolut', p: 10000 },
+            { n: 'Vodka Absolut Saborizados', p: 10000 },
+            { n: 'Vodka Grey Goose', p: 27000 },
+            { n: 'Vodka Pravda', p: 13000 },
+            { n: 'Vodka Zubrowka', p: 23000 },
+          ],
+        },
+        {
+          nombre: 'Licores',
+          nota: 'Medidas sin mezcla.',
+          items: [
+            { n: 'Fireball', p: 9000 },
+            { n: 'Amarula', p: 12000 },
+            { n: 'Licores Nacionales', p: 8000 },
+            { n: 'Jagermeister', p: 10000 },
+            { n: 'Damonjag', d: 'Alternativa Jagger', p: 8000 },
+            { n: 'Cointreau', p: 15000 },
+            { n: 'Khalua', p: 30000 },
+            { n: 'Bhorgetti', p: 12000 },
+            { n: 'Baileys', p: 12000 },
+            { n: 'St. Germain', p: 29000 },
+            { n: 'Frangelico', p: 13000 },
+            { n: 'Sambuca', p: 16000 },
+            { n: 'Amaretto', p: 16000 },
+            { n: 'Tia maria', p: 8000 },
+            { n: 'Malibu', p: 6000 },
+            { n: 'Drambuie', p: 18000 },
+            { n: 'Sheridans', p: 16000 },
+            { n: 'Limoncello Strega italiano', p: 20000 },
+          ],
+        },
+        {
+          nombre: 'Scotch',
+          items: [
+            { n: 'Ballantines', p: 10000 },
+            { n: 'Ballantines 12 Años Gold', p: 22000 },
+            { n: 'Chivas Regal 12', p: 18000 },
+            { n: 'Chivas Extra 13', p: 20000 },
+            { n: 'Chivas 18', p: 46000 },
+            { n: 'JB', p: 10000 },
+            { n: 'Johnnie Walker red', p: 10000 },
+            { n: 'Johnnie Walker black', p: 19000 },
+            { n: 'Johnnie Walker Double black', p: 23000 },
+            { n: 'Johnnie Walker Green Label', p: 46000 },
+            { n: 'Johnnie Walker gold', p: 37000 },
+            { n: 'Johnnie Walker platinum', p: 64000 },
+            { n: 'Johnnie Walker blue', p: 130000 },
+            { n: "Grant's Triple Wood", p: 14000 },
+            { n: "Grant's cask edition", p: 18000 },
+            { n: 'Famous Grouse', p: 17000 },
+            { n: 'Famous Grouse 12 años', p: 20000 },
+            { n: 'White Horse', p: 8000 },
+            { n: "Dewar's 12 años", p: 19000 },
+            { n: 'Cutty Sark', p: 16000 },
+            { n: 'Vat 69', p: 7000 },
+            { n: '100 Pipers', p: 8000 },
+          ],
+        },
+        {
+          nombre: 'Bourbon',
+          items: [
+            { n: 'Jack Daniels', p: 16000, f: true },
+            { n: 'Jack Daniels Honey', p: 19000 },
+            { n: 'Jack Daniels Master Distiller', p: 40000 },
+            { n: 'Jack Daniels Silver Select', p: 60000 },
+            { n: 'Jack Daniels Fire', p: 24000 },
+            { n: "Jack Daniels Gentleman Jack", p: 24000 },
+            { n: 'Bullet', p: 21000 },
+            { n: 'Jim Beam', p: 16000 },
+            { n: 'Jim Beam Black', p: 23000 },
+            { n: 'Jim Beam Honey', p: 17000 },
+            { n: "Maker's Mark", p: 31000 },
+            { n: 'Evan Williams', p: 28000 },
+            { n: 'Evan Williams Single Barrel', p: 46000 },
+            { n: 'Benchmark', p: 12000 },
+          ],
+        },
+        {
+          nombre: 'Irish',
+          items: [
+            { n: 'Jameson', p: 13000, f: true },
+            { n: 'Jameson Black Barrel', p: 25000 },
+            { n: 'Jameson ipa', p: 17000 },
+          ],
+        },
+        {
+          nombre: 'Single Malt',
+          items: [
+            { n: 'Cardhu 12', p: 76000 },
+            { n: 'Glenfiddich 12', p: 48000 },
+            { n: 'Glenkinchie 12', p: 53000 },
+            { n: 'The Glenlivet 12', p: 28000 },
+            { n: 'Scapa', p: 52000 },
+            { n: 'Strathisla 12', p: 70000 },
+            { n: 'Macallan 12', p: 95000 },
+            { n: 'Aberlour', p: 34000 },
+          ],
+        },
+      ],
+    },
+
+    /* ------------------------------------------------ sin alcohol */
+    {
+      id: 'sin-alcohol',
+      nombre: 'Sin Alcohol',
+      glosa: 'Gaseosas, jugos, licuados y cervezas sin alcohol.',
+      tipo: 'bebida',
+      sinAlcohol: true,
+      grupos: [
+        {
+          nombre: 'Gaseosas, Aguas y Saborizadas',
+          items: [
+            {
+              n: 'Gaseosas',
+              d: 'Coca, Coca zero, Sprite, Sprite zero, Fanta naranja, Schweppes pomelo, Schweppes tonica',
+              p: 6000,
+              k: 'lata',
+            },
+            { n: 'Red bull', p: 8000, k: 'lata' },
+            { n: 'Speed', p: 8000, k: 'lata' },
+            { n: 'Limonada', d: 'Limon, jengibre, menta, azucar', p: 8000, k: 'copa' },
+            { n: 'Limonada de frutos rojos', d: 'Limon, menta y frutos rojos, azucar', p: 8000, k: 'copa' },
+            { n: 'Pomelada frozen', d: 'Pomelo, jengibre, almibar de jengibre', p: 8000, k: 'copa' },
+            {
+              n: 'Limonada de la casa',
+              d: 'Limon, naranja, pomelo, menta, azucar',
+              p: 8000,
+              k: 'copa',
+            },
+            { n: 'Agua mineral', p: 6000, k: 'botella' },
+            { n: 'Agua Saborizada', d: 'Acuarius manzana o pomelo', p: 6000, k: 'botella' },
+            { n: 'Exprimido', d: 'Naranja o pomelo', p: 7000, k: 'vaso' },
+            { n: 'Jugo de Tomate', p: 8000, k: 'vaso' },
+          ],
+        },
+        {
+          nombre: 'Cervezas Sin Alcohol',
+          items: [
+            { n: 'Quilmes sin alcohol', p: 7000, k: 'lata' },
+            { n: 'Corona sin alcohol', p: 8000, k: 'lata' },
+            { n: 'Stella Artois sin alcohol', p: 8000, k: 'lata' },
+            { n: 'Heineken sin alcohol', p: 8000, k: 'lata' },
+          ],
+        },
+        {
+          nombre: 'Licuados',
+          items: [
+            {
+              n: 'Licuado',
+              d: 'Banana, manzana, anana, melon, frutilla, durazno o limon, con azucar. Con agua o leche',
+              p: 8000,
+              k: 'vaso',
+            },
+            { n: 'Licuado con exprimido de naranjas', p: 8000, k: 'vaso' },
+            { n: 'Del Bosque', d: 'Naranja, frutos rojos, jengibre', p: 8000, k: 'vaso' },
+            { n: 'Minerva', d: 'Maracuya, hojas de menta, pomelo', p: 8000, k: 'vaso' },
+            { n: 'Pina', d: 'Anana, frutos rojos, exprimido de naranjas', p: 8000, k: 'vaso' },
+            {
+              n: 'Almendras, banana y Miel',
+              d: 'Leche de almendras, canela',
+              p: 8000,
+              k: 'vaso',
+            },
+            {
+              n: 'The oldest 600',
+              d: 'Banana, helado dulce de leche, salsa de chocolate',
+              p: 8000,
+              k: 'vaso',
+            },
+            {
+              n: 'Milkshake',
+              d: 'Helado de frutilla, chocolate, dulce de leche, crema americana y leche',
+              p: 10000,
+              k: 'vaso',
+            },
+          ],
+        },
+      ],
+    },
+
+    /* ------------------------------------------------ vinos */
+    {
+      id: 'vinos',
+      nombre: 'Vinos y Espumantes',
+      glosa: 'Malbec, espumantes y copas para acompanar.',
+      tipo: 'bebida',
+      grupos: [
+        {
+          nombre: 'Vinos por Copa',
+          items: [
+            { n: 'Copa Luna Malbec', p: 7000, k: 'copa' },
+            { n: 'Copa Cafayate Torrontes', p: 7000, k: 'copa' },
+            { n: 'Copa Cafayate Dulce Tardio', p: 7000, k: 'copa' },
+          ],
+        },
+        {
+          nombre: 'Malbec',
+          items: [
+            { n: 'Benjamin Nieto', p: 18000 },
+            { n: 'Nieto Senetiner', p: 20000 },
+            { n: 'Cafayate', p: 18000 },
+            { n: 'Cordero de Piel de Lobo', p: 20000 },
+            { n: 'Perro Callejero', p: 23000 },
+            { n: 'Tomero', p: 20000 },
+            { n: 'Escorihuela Gascon Gran Reserva', p: 30000 },
+            { n: 'Escorihuela Gascon Familia', p: 18000 },
+            { n: 'Trumpeter', p: 28000 },
+            { n: 'La Anita', p: 28000 },
+            { n: 'Luna', p: 14000 },
+          ],
+        },
+        {
+          nombre: 'Cabernet Sauvignon',
+          items: [
+            { n: 'Trumpeter', p: 27000 },
+            { n: 'Tomero', p: 21000 },
+          ],
+        },
+        {
+          nombre: 'Blend de Tintas',
+          items: [
+            { n: 'Mosquita Muerta', p: 40000 },
+            { n: 'Sapo de Otro Pozo', p: 30000 },
+          ],
+        },
+        {
+          nombre: 'Chardonay',
+          items: [
+            { n: 'Trumpeter', p: 26000 },
+            { n: 'Escorihuela Gascon Familia', p: 19000 },
+            { n: 'Tomero', p: 21000 },
+          ],
+        },
+        {
+          nombre: 'Rosados',
+          items: [
+            { n: 'Tomero rose', p: 21000 },
+            { n: 'Gascon familia Gran Rosse', p: 26000 },
+          ],
+        },
+        {
+          nombre: 'Dulces',
+          items: [
+            { n: 'Cafayate tardio', p: 19000 },
+            { n: 'Norton Tardio', p: 19000 },
+          ],
+        },
+        {
+          nombre: 'Espumantes',
+          items: [
+            { n: 'Chandon Personal 187', p: 19000 },
+            { n: 'Baron B. Extra Brut', p: 51000 },
+            { n: 'Chandon Extra Brut', p: 39000 },
+            { n: 'Chandon B. Nature cuve', p: 33000 },
+            { n: 'Nieto S. Brut Nature', p: 29000 },
+            { n: 'Nieto S.B.N. Gran Cuve', p: 33000 },
+            { n: 'Salentein Brut Nature', p: 29000 },
+            { n: 'Escorihuela Gascon Rosse', p: 31000 },
+          ],
+        },
+      ],
+    },
+
+    /* ------------------------------------------------ postres */
+    {
+      id: 'postres',
+      nombre: 'Postres',
+      glosa: 'Caseros, con dulce de leche y bastante crema americana.',
+      tipo: 'comida',
+      grupos: [
+        {
+          nombre: 'Postres',
+          items: [
+            {
+              n: 'Chocotorta de la Abuela',
+              d: 'Chocolinas humedas, dulce de leche casero y queso crema',
+              p: 11000,
+              f: true,
+            },
+            {
+              n: 'American Berry',
+              d: 'Reduccion de Malbec, frutos rojos, helado de crema americana y crocante',
+              p: 11000,
+            },
+            {
+              n: 'Postre Gerard',
+              d: 'Base merenguitos, dulce de leche, helado de americana, nueces picadas y charlotte',
+              p: 11000,
+            },
+            {
+              n: 'Helado 2 gustos',
+              d: 'Frutilla, chocolate, americana, dulce de leche y limon',
+              p: 11000,
+            },
+            {
+              n: 'The Oldest',
+              d: 'Brownie, helado de crema americana, nueces y salsa de frutos rojos o charlotte',
+              p: 11000,
+              f: true,
+            },
+            { n: 'Torta de Manzanas', d: 'Con helado de crema americana', p: 17000 },
+            { n: "Brooklyn's Cheesecake", d: 'Con salsa de frutos rojos o frutillas', p: 11000 },
+            { n: 'Panqueque Mixto', d: 'Con dulce de leche y crema', p: 11000 },
+            {
+              n: 'Panqueque de Helado',
+              d: 'Con dulce de leche, crema americana y salsa de chocolate',
+              p: 14000,
+            },
+            { n: 'Banana Split', d: 'Banana, dulce de leche, helado de americana y charlotte', p: 11000 },
+            { n: 'Ensalada de frutas', p: 11000 },
+            { n: '1/2 Ensalada de frutas', p: 7000 },
+            {
+              n: 'Affogato',
+              d: 'Expresso simple, nueces picadas, caramelo y helado de americana',
+              p: 10000,
+            },
+            {
+              n: 'Cheesecake Frutos rojos',
+              d: 'Base de galleta dulce, relleno de queso Mascarpone y Philadelphia. Apto para celiacos.',
+              p: 11000,
+              t: ['sin-tacc'],
+            },
+            { n: 'Key Lime Pie individual', p: 10000 },
+            { n: 'Mousse individual', p: 10000 },
+          ],
+        },
+      ],
+    },
+  ],
+}
